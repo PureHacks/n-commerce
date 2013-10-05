@@ -1,0 +1,40 @@
+
+<!-- home page -->
+home page (tmeplate)
+<h1>Product Info</h1>
+<p id="prod-title">{{productName}}</p>
+<p>{{productDesc}}</p>
+
+
+<h1>Product List</h1>
+<ul id="product-list">
+{{#each productList}}
+   <li>
+      <a href="/product/{{id}}">{{name}}</a><br/>
+      {{desc}}
+   </li>
+{{/each}}
+</ul>
+
+
+{{#contentFor 'pageStyles'}}
+	<link type="text/css" rel="stylesheet" href="/css/home.css"/>
+	<style>
+		#product-list {
+			background-color:#e1e1e1; 
+		};
+	</style>
+{{/contentFor}}
+
+
+{{#contentFor 'pageScripts'}}
+	<script>
+	    (function($){
+	    	$('#prod-title').click(function() {
+	      		console.log("clicked");
+	    	});
+	    })(jQuery);
+
+	</script>
+{{/contentFor}}
+
