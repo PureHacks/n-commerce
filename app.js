@@ -5,6 +5,7 @@
 var express = require('express')
   , app = express()
   , controllers = require('./controllers')
+  , productController = require('./controllers/products')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
@@ -58,6 +59,8 @@ if ('development' == app.get('env')) {
 // home page
 app.get('/', controllers.index);
 app.post('/products', controllers.addProduct);
+
+app.get('/product/:id', productController.getProducts);
 
 /*
 // http://stackoverflow.com/questions/8864626/using-routes-in-express-js

@@ -1,12 +1,38 @@
-var products = [{"id":1, "name":"Product 1", "desc":"Product 1 description"},{"id":2, "name":"Product 2", "desc":"Product 2 description"},{"id":3, "name":"Product 3", "desc":"Product 3 description"},{"id":4, "name":"Product 4", "desc":"Product 4 description"}];
+
+var db = require('../lib/storage').db;
+var Product = require('../models/Product').Product;
 
 
-exports.getProducts = function() {
-   return products;
-}
- 
-exports.getProduct = function(id) {
-   for(var i=0; i < products.length; i++) {
-      if(products[i].id == id) return products[i];
-   }
-}
+exports.getProducts = function(req, res) {
+
+	console.log("req.params=", req.params);
+
+	// this is the product controller
+	var products = {};
+	var id = req.params.id;
+
+	// products is response array
+	Product.findById(""+id, function(err, product){
+
+		//console.log("findById products=",product, "id=",id);
+
+		if(err) {
+			renderResponse([]);
+	    } else {
+			renderResponse(product);
+	    }
+	});
+
+
+	var renderResponse = function (product) {
+	   
+	   	//console.log("id=", id, ", lenmgth=", products.length, "products=", products);
+
+	    res.render('pip',{
+	      title:product.name
+	      , productId: product._id
+	      , productName: product.name
+	      , productDesc: product.desc
+    	});
+  	};
+};
