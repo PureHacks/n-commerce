@@ -10,6 +10,8 @@
     "express": "3.4.0",
     "less-middleware": "*",
     "mongoose":"*",
-    "express-hbs":"0.3.0"
+    "express-hbs":"0.3.0",
+    "passport" : "*",
+    "passport-local" : "*"
   }
 }

@@ -10,6 +10,10 @@ var express = require('express')
   , path = require('path')
   , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
+var config = {};
+var storage = require("./lib/storage");
+var passport 	  = require("passport");
+require('./lib/passport')(passport, config);	
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -29,6 +33,8 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('my secret'));
 app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid'}));
 app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
