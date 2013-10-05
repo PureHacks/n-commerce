@@ -57,6 +57,7 @@ if ('development' == app.get('env')) {
 
 // home page
 app.get('/', controllers.index);
+app.post('/products', controllers.addProduct);
 
 /*
 // http://stackoverflow.com/questions/8864626/using-routes-in-express-js
