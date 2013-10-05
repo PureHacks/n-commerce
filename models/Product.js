@@ -6,12 +6,21 @@
  */
 
 // get a connection to the DB
-var db = require('../lib/storage').db;
+var db = require('../lib/storage').db
+    , Category = require('../models/Category');
+
 
 // create the Product model
 var Product = db.model('Product', db.Schema({
   name: 'string',
-  desc: 'string'
+  desc: 'string',
+  price: 'number',
+  image: 'string',
+  sku: 'string',
+  categories: db.Schema.Types.ObjectId,
+  dateAdded: 'date',
+  quantity: 'number',
+  status: 'string'
 }));
 
 // export Product model

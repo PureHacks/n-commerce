@@ -30,9 +30,15 @@ exports.getProducts = function(req, res) {
 
 	    res.render('pip',{
 	      title:product.name
-	      , productId: product._id
-	      , productName: product.name
-	      , productDesc: product.desc
-    	});
+        , productId: product._id
+        , productName: product.name
+        , productDesc: product.desc
+        , productPrice: product.price
+        , productImage: product.image
+        , productSku: product.sku
+        , productDateAdded: product.dateAdded
+        , productQuantity: product.quantity
+        , productStatus: product.status
+      });
   	};
 };
