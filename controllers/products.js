@@ -1,12 +1,89 @@
-var products = [{"id":1, "name":"Product 1", "desc":"Product 1 description"},{"id":2, "name":"Product 2", "desc":"Product 2 description"},{"id":3, "name":"Product 3", "desc":"Product 3 description"},{"id":4, "name":"Product 4", "desc":"Product 4 description"}];
+
+var db = require('../lib/storage').db;
+var Product = require('../models/Product').Product;
 
 
-exports.getProducts = function() {
-   return products;
-}
- 
-exports.getProduct = function(id) {
-   for(var i=0; i < products.length; i++) {
-      if(products[i].id == id) return products[i];
-   }
+exports.getProducts = function(req, res) {
+
+	console.log("req.params=", req.params);
+
+	// this is the product controller
+	var products = {};
+	var id = req.params.id;
+
+	// products is response array
+	Product.findById(""+id, function(err, product){
+
+		//console.log("findById products=",product, "id=",id);
+
+		if(err) {
+			renderResponse([]);
+	    } else {
+			renderResponse(product);
+	    }
+	});
+
+
+	var renderResponse = function (product) {
+	   
+	   	//console.log("id=", id, ", lenmgth=", products.length, "products=", products);
+
+	    res.render('pip',{
+	      title:product.name
+        , productId: product._id
+        , productName: product.name
+        , productDesc: product.desc
+        , productPrice: product.price
+        , productImage: product.image
+        , productSku: product.sku
+        , productDateAdded: product.dateAdded
+        , productQuantity: product.quantity
+        , productStatus: product.status
+      });
+  	};
+};
+
+exports.addProduct = function(req, res){
+  var name = req.param('name');
+  var desc = req.param('desc');
+  var price = +(req.param('price'));
+  var image = req.param('image');
+  var sku = req.param('sku');
+  // TODO create te categories logic
+  // var categories = req.param('categories');
+  var dateAdded = new Date();
+  var quantity = req.param('quantity');
+  // TODO change the hardcoded ACTIVE status
+  var status = 'active';
+
+  // create instance of Product from req params
+  var product = new Product({
+    name: name,
+    desc: desc,
+    price: price,
+    image: image,
+    sku: sku,
+    categories: null,
+    dateAdded: dateAdded,
+    quantity: quantity,
+    status: status
+  });  //instance created
+
+  product.save(function(err) {
+    if(err) {
+      //console.log('error saving product name: ' + product.name);
+    }
+    res.render('home',{
+      title:'N-Commerce Home'
+      , productName: ''
+      , productDesc: ''
+      , productList: []
+    });
+  })
+};
+
+exports.addProductPage = function(req, res) {
+  res.render('addProduct',{
+    title:'N-Commerce Add Product'
+  });
 }

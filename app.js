@@ -7,6 +7,8 @@ var express = require('express')
   , passport = require("passport")
   , auth = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
+  , productController = require('./controllers/products')
+  , navController = require('./controllers/navigation')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
@@ -66,47 +68,13 @@ app.get('/', controllers.index);
 app.post('/products', controllers.addProduct);
 app.post('/login', auth.loginUser);
 app.post('/register', auth.registerUser);
+app.post('/product', productController.addProduct);
+app.get('/product', productController.addProductPage)
 
-/*
-// http://stackoverflow.com/questions/8864626/using-routes-in-express-js
-//app.get('/product/:id', routes.product.list);
-
-function(req, res){	
-	console.log(req.params);
-	var entry = blogEngine.getBlogEntry(req.params.id);
-	res.render('article',{title:entry.title, blog:entry});
-});
+app.get('/product/:id', productController.getProducts);
 
 
-var products = require('./products');
-
-exports.index = function(req, res){	
-	console.log(req.params);
-		
-	var product = products.getProduct(req.params.id);
-	res.render('product',{
-		title: product.name
-		, productName: product.name
-		, productDesc: product.desc
-	});
-});
-
-
-function(req, res){
-
-	//var entry = blogEngine.getBlogEntry(req.params.id);
-	var product = products.getProduct(3);
-	//var productResults = products.getProduct();
-
-	res.render('home',{
-		title:'N-Commerce Home'
-		, productName: product.name
-		, productDesc: product.desc
-		, productList:products.getProducts()
-	});
-};
-
-*/
+app.get('/topcategories', navController.getCategories);
 
 //page not found
 app.use(function(req, res, next){

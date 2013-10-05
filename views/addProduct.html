@@ -1,0 +1,23 @@
+
+<!-- addProduct page -->
+<h1>Add Product</h1>
+
+<form action="/product" method="post">
+    <label for="prod-name">name:</label><input type="text" name="name" id="prod-name"><br>
+    <label for="prod-desc">desc:</label><input type="text" name="desc" id="prod-desc"><br>
+    <label for="prod-price">price:</label><input type="text" name="price" id="prod-price"><br>
+    <label for="prod-image">image:</label><input type="file" name="image" id="prod-image"><br>
+    <label for="prod-sku">sku:</label><input type="text" name="sku" id="prod-sku"><br>
+    <label for="prod-quantity">quantity:</label><input type="text" name="quantity" id="prod-quantity"><br>
+    <!-- label for="prod-status">status:</label><input type="text" name="status" id="prod-status"><br -->
+    <input type="submit" value="Save">
+</form>
+
+{{#contentFor 'pageStyles'}}
+<link type="text/css" rel="stylesheet" href="/css/pip.css"/>
+{{/contentFor}}
+
+
+{{#contentFor 'pageScripts'}}
+
+{{/contentFor}}
