@@ -2,14 +2,13 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express')
-, app = express()
-, routes = require('./routes')
-, http = require('http')
-, fs = require('fs')
-, path = require('path')
-, hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
+  , app = express()
+  , routes = require('./routes')
+  , http = require('http')
+  , fs = require('fs')
+  , path = require('path')
+  , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
 
 // all environments
@@ -18,13 +17,15 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.compress());
-//app.use(express.bodyParser());
+app.use(express.bodyParser());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-/* cookies */
-// http://expressjs.com/api.html#res.cookie
-// http://expressjs.com/api.html#req.signedCookies
+
+/* cookies
+  http://expressjs.com/api.html#res.cookie
+  http://expressjs.com/api.html#req.signedCookies
+*/
 app.use(express.cookieParser('my secret'));
 app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid'}));
 app.use(express.session());
