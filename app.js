@@ -4,16 +4,16 @@
  */
 var express = require('express')
   , app = express()
+  , passport = require("passport")
+  , auth = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
   , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
-var config = {};
-var storage = require("./lib/storage");
-var passport 	  = require("passport");
-require('./lib/passport')(passport, config);	
+
+require('./lib/passport')(passport);	
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -64,6 +64,8 @@ if ('development' == app.get('env')) {
 // home page
 app.get('/', controllers.index);
 app.post('/products', controllers.addProduct);
+app.post('/login', auth.loginUser);
+app.post('/register', auth.registerUser);
 
 /*
 // http://stackoverflow.com/questions/8864626/using-routes-in-express-js

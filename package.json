@@ -12,6 +12,7 @@
     "mongoose":"*",
     "express-hbs":"0.3.0",
     "passport" : "*",
-    "passport-local" : "*"
+    "passport-local" : "*",
+    "crypto" : "*"
   }
 }
