@@ -5,7 +5,7 @@
 var express = require('express')
   , app = express()
   , passport = require("passport")
-  , auth = require('./controllers/auth')(passport)
+  , authController = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
   , productController = require('./controllers/products')
   , navController = require('./controllers/navigation')
@@ -65,14 +65,13 @@ if ('development' == app.get('env')) {
 
 // home page
 app.get('/', controllers.index);
-app.post('/products', controllers.addProduct);
-app.post('/login', auth.loginUser);
-app.post('/register', auth.registerUser);
+
+app.post('/login', authController.loginUser);
+app.post('/register', authController.registerUser);
+
 app.post('/product', productController.addProduct);
 app.get('/product', productController.addProductPage)
-
 app.get('/product/:id', productController.getProducts);
-
 
 app.get('/topcategories', navController.getCategories);
 

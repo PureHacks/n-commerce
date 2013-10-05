@@ -8,6 +8,11 @@ var Product = require('../models/Product').Product;
 
 exports.index = function(req, res){
 
+  //check if user is logged in
+  var user = req.isAuthenticated() ? req.user : false;
+
+  console.log('logged in', user);
+
 	//set cookie - http://expressjs.com/api.html#res.cookie
 	res.cookie('test', 'cookie value josh', {signed: true});
 	
@@ -28,6 +33,7 @@ exports.index = function(req, res){
     res.render('home',{
       title:'N-Commerce Home'
       , productList: products
+      , user : user
     });
   };
 };
