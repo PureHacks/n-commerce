@@ -1,5 +1,6 @@
 {
-  "name": "application-name",
+  "name": "N-Commerce",
+  "description":"Boilerplate e-commerce platform powered by NodeJS",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,8 +8,8 @@
   },
   "dependencies": {
     "express": "3.4.0",
-    "ejs": "*",
     "less-middleware": "*",
-    "mongoose":"*"
+    "mongoose":"*",
+    "express-hbs":"0.3.0"
   }
 }
