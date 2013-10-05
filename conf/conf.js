@@ -8,8 +8,6 @@
 var devConf  = require('./devConf').conf
   , prodConf = require('./prodConf').conf;
 
-console.log(devConf);
-console.log(devConf.databaseHost);
 /**
  * Returns the current configuration object
  * @returns {*} the configuration object

@@ -4,7 +4,7 @@
  */
 var express = require('express')
   , app = express()
-  , routes = require('./routes')
+  , controllers = require('./controllers')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
@@ -52,12 +52,11 @@ if ('development' == app.get('env')) {
 
 
 /* **********************
-	routes
+	controllers
 ************************/
 
 // home page
-app.get('/', routes.index);
-
+app.get('/', controllers.index);
 
 /*
 // http://stackoverflow.com/questions/8864626/using-routes-in-express-js
