@@ -31,28 +31,3 @@ exports.index = function(req, res){
     });
   };
 };
-
-
-
-exports.addProduct = function(req, res){
-  var name = req.param('name');
-  var desc = req.param('desc');
-
-  // create instance of Product from req params
-  var product = new Product({
-    name: name,
-    dec: desc
-  });  //instance created
-
-  product.save(function(err) {
-    if(err) {
-      //console.log('error saving product name: ' + product.name);
-    }
-    res.render('home',{
-      title:'N-Commerce Home'
-      , productName: product.name
-      , productDesc: product.desc
-      , productList: [product]
-    });
-  })
-};

@@ -59,53 +59,13 @@ if ('development' == app.get('env')) {
 
 // home page
 app.get('/', controllers.index);
-app.post('/products', controllers.addProduct);
+app.post('/product', productController.addProduct);
+app.get('/product', productController.addProductPage)
 
 app.get('/product/:id', productController.getProducts);
 
 
 app.get('/topcategories', navController.getCategories);
-
-/*
-// http://stackoverflow.com/questions/8864626/using-routes-in-express-js
-//app.get('/product/:id', routes.product.list);
-
-function(req, res){	
-	console.log(req.params);
-	var entry = blogEngine.getBlogEntry(req.params.id);
-	res.render('article',{title:entry.title, blog:entry});
-});
-
-
-var products = require('./products');
-
-exports.index = function(req, res){	
-	console.log(req.params);
-		
-	var product = products.getProduct(req.params.id);
-	res.render('product',{
-		title: product.name
-		, productName: product.name
-		, productDesc: product.desc
-	});
-});
-
-
-function(req, res){
-
-	//var entry = blogEngine.getBlogEntry(req.params.id);
-	var product = products.getProduct(3);
-	//var productResults = products.getProduct();
-
-	res.render('home',{
-		title:'N-Commerce Home'
-		, productName: product.name
-		, productDesc: product.desc
-		, productList:products.getProducts()
-	});
-};
-
-*/
 
 //page not found
 app.use(function(req, res, next){
