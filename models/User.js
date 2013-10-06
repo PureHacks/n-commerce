@@ -1,6 +1,7 @@
 // get a connection to the DB
 var db 	 = require('../lib/storage').db
-  , hash = require('../lib/hash');
+  , hash = require('../lib/hash')
+  , Cart = require('../models/Cart').Cart;
 
 
 var UserSchema = db.Schema({
@@ -9,6 +10,7 @@ var UserSchema = db.Schema({
 	email:      String,
 	salt:       String,
 	hash:       String,
+  cart:       { type: db.Schema.Types.ObjectId, ref: 'Cart' }
 });
 
 
@@ -36,29 +38,38 @@ UserSchema.statics.signup = function(email, password, fname, lname, done){
 		
 		if(err) throw err;
 		if (err) return done(err);
-		
-		User.create({
-			firstName : fname,
-			lastName : lname,
-			email : email,
-			salt : salt,
-			hash : hash
-		}, function(err, user){
-		
-			if (err) return done(err);
-			done(null, user);
-		});
 
+    Cart.create({
+      products: []
+    }, function(err, cart) {
+      if(err) {
+        cart = null
+      }
+      User.create({
+        firstName : fname,
+        lastName : lname,
+        email : email,
+        salt : salt,
+        hash : hash,
+        cart: (cart ? [db.Types.ObjectId(cart.id)] : null)
+      }, function(err, user){
+
+        if (err) return done(err);
+        done(null, user);
+      });
+    });
 	});
 };
 
 
 UserSchema.statics.getByEmail = function(email, done) {
 
-	this.findOne({email : email}, function(err, user) {
-
-		done(err, user);
-	});
+	this.findOne({email : email})
+    .populate('cart')
+    .exec(function(err, user) {
+      console.log('gotByEmail: ', user);
+      done(err, user);
+    });
 };
 
 /*

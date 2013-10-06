@@ -8,12 +8,14 @@ PIP page (template)
 <p>{{productSku}}</p>
 <p>{{productImage}}</p>
 <p>Date Added: {{productDateAdded}}</p>
-
 <p>Qty Available:{{productQuantity}}</p>
-
 <p>Status:{{productStatus}}</p>
-
 <p>{{productDesc}}</p>
+<form action="/cart" method="post">
+    <label for="quantity">quantity</label> <input type="text" name="quantity" id="quantity" value="1">
+    <input type="hidden" name="productId" id="productId" value="{{productId}}">
+    <input type="submit" data-id="{{productId}}" value="Add to cart">
+</form>
 
 
 {{#contentFor 'pageStyles'}}

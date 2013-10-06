@@ -1,0 +1,26 @@
+
+<!-- cart page -->
+Cart page (template)
+<h1>Cart</h1>
+<h2>Total: {{total}}</h2>
+<h2>you have {{productsLength}} items</h2>
+
+<ul id="cart-list">
+    {{#each productList}}
+    <li>
+        <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
+        <p>{{sku}}</p>
+        <p>{{desc}}</p>
+    </li>
+    {{/each}}
+</ul>
+
+{{#contentFor 'pageStyles'}}
+<link type="text/css" rel="stylesheet" href="/css/pip.css"/>
+{{/contentFor}}
+
+
+{{#contentFor 'pageScripts'}}
+
+{{/contentFor}}
+

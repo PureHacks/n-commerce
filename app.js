@@ -8,6 +8,7 @@ var express = require('express')
   , authController = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
   , productController = require('./controllers/products')
+  , cartController = require('./controllers/cart')
   , navController = require('./controllers/navigation')
   , http = require('http')
   , fs = require('fs')
@@ -72,6 +73,9 @@ app.post('/register', authController.registerUser);
 app.post('/product', productController.addProduct);
 app.get('/product', productController.addProductPage)
 app.get('/product/:id', productController.getProducts);
+
+app.get('/cart', cartController.getCart);
+app.post('/cart', cartController.addToCart);
 
 app.get('/topcategories', navController.getCategories);
 
