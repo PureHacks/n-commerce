@@ -9,7 +9,9 @@ var express = require('express')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
-  , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
+  , pubDir = path.join(__dirname, 'public')
+  , hbs = require('express-hbs')
+  , config = require('./conf/conf'); //https://npmjs.org/package/express-hbs
 
 
 // all environments
@@ -31,8 +33,19 @@ app.use(express.cookieParser('my secret'));
 app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid'}));
 app.use(express.session());
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+
+console.log('What ENV are we in? '+app.get('env'));
+
+app.use(require('less-middleware')({ 
+  src: __dirname + "/public/less"
+  , dest: __dirname + "/public/css"
+  , compress:true
+  , debug: (app.get('env')=='development')?true:false
+  , force: (app.get('env')=='development')?true:false
+  , prefix:'/css'
+}));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Hook in express-hbs and tell it where known directories reside
 app.engine('html', hbs.express3({
@@ -62,46 +75,6 @@ app.post('/products', controllers.addProduct);
 
 app.get('/product/:id', productController.getProducts);
 
-/*
-// http://stackoverflow.com/questions/8864626/using-routes-in-express-js
-//app.get('/product/:id', routes.product.list);
-
-function(req, res){	
-	console.log(req.params);
-	var entry = blogEngine.getBlogEntry(req.params.id);
-	res.render('article',{title:entry.title, blog:entry});
-});
-
-
-var products = require('./products');
-
-exports.index = function(req, res){	
-	console.log(req.params);
-		
-	var product = products.getProduct(req.params.id);
-	res.render('product',{
-		title: product.name
-		, productName: product.name
-		, productDesc: product.desc
-	});
-});
-
-
-function(req, res){
-
-	//var entry = blogEngine.getBlogEntry(req.params.id);
-	var product = products.getProduct(3);
-	//var productResults = products.getProduct();
-
-	res.render('home',{
-		title:'N-Commerce Home'
-		, productName: product.name
-		, productDesc: product.desc
-		, productList:products.getProducts()
-	});
-};
-
-*/
 
 //page not found
 app.use(function(req, res, next){

@@ -1,0 +1,83 @@
+/* 
+    Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowetz
+*/
+
+// mobile
+@media (max-width: 639px){
+
+	// set parent grid
+	.setFluidL1Grid(4, 320px, 20);
+	
+	// set nested grid
+    .setFluidL2Grid(4, 4, 320px, 20);
+    .setFluidL2Grid(2, 4, 320px / (4/2), 20);
+
+	#main-wrap, .row  { max-width:480px; }
+
+	.tablet-only, .desktop-only, .mobile-hide { display: none;}
+	.show-mobile { display: block;}
+
+	.marg-l-0-m { margin-left:0; }
+	.marg-r-0-m { margin-right:0; }
+	.marg-lr-0-m { margin-left:0; margin-right:0; }
+	.clear-r-m { clear:right; }
+}
+
+
+
+@media (min-width: 640px) and (max-width: 959px) {
+	// set parent grid
+	.setFluidL1Grid(8, 640px, 20);
+	
+	// set nested grids
+    .setFluidL2Grid(8, 8, 640px, 20);
+    .setFluidL2Grid(6, 8, 640px / (8/6), 20);
+    .setFluidL2Grid(5, 8, 640px / (8/5), 20);
+    .setFluidL2Grid(4, 8, 640px / (8/4), 20);
+
+ 
+	.mobile-only, .desktop-only, .tablet-hide {display: none;}
+	.marg-l-0-t { margin-left:0; }
+	.marg-r-0-t { margin-right:0; }
+	.marg-lr-0-t { margin-left:0; margin-right:0; }
+
+}
+
+
+
+@media (min-width: 960px){
+
+	#main-wrap, .row  { max-width:1152px; }
+	
+	// set parent grids
+	.setFluidL1Grid(12, 960px, 20);
+	
+	// set nested grids
+    .setFluidL2Grid(12, 12, 960px / (12/12), 20);
+    .setFluidL2Grid(10, 12, 960px / (12/10), 20); // calculates nested rules under 10of12
+    .setFluidL2Grid(9, 12, 960px / (12/9), 20);
+    .setFluidL2Grid(8, 12, 960px / (12/8), 20);
+    .setFluidL2Grid(6, 12, 960px / (12/6), 20);
+    .setFluidL2Grid(5, 12, 960px / (12/5), 20);
+    .setFluidL2Grid(4, 12, 960px / (12/4), 20);
+    .setFluidL2Grid(2, 12, 960px / (12/2), 20);
+
+	.mobile-only, .tablet-only, .desktop-hide {display: none;}
+
+	.marg-l-0-d { margin-left:0; }
+	.marg-r-0-d { margin-right:0; }
+	.marg-lr-0-d { margin-left:0; margin-right:0; }
+}
+
+
+// MARGINS
+.marg-t-0 { margin-top:0; }
+.marg-t-1 { margin-top:10px; margin-top:1rem; }
+
+.marg-b-0 {margin-bottom: 0;}
+.marg-b-1unit { margin-bottom:18px; margin-bottom:1.8rem; }
+
+// FLOATS
+.float-r { float:right; }
+.float-l { float:left; }
+
