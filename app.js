@@ -4,15 +4,18 @@
  */
 var express = require('express')
   , app = express()
+  , passport = require("passport")
+  , authController = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
   , productController = require('./controllers/products')
+  , navController = require('./controllers/navigation')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
-  , pubDir = path.join(__dirname, 'public')
-  , hbs = require('express-hbs')
-  , config = require('./conf/conf'); //https://npmjs.org/package/express-hbs
+  , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
+
+require('./lib/passport')(passport);	
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -32,6 +35,8 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('my secret'));
 app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid'}));
 app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 
 console.log('What ENV are we in? '+app.get('env'));
@@ -71,10 +76,15 @@ if ('development' == app.get('env')) {
 
 // home page
 app.get('/', controllers.index);
-app.post('/products', controllers.addProduct);
 
+app.post('/login', authController.loginUser);
+app.post('/register', authController.registerUser);
+
+app.post('/product', productController.addProduct);
+app.get('/product', productController.addProductPage)
 app.get('/product/:id', productController.getProducts);
 
+app.get('/topcategories', navController.getCategories);
 
 //page not found
 app.use(function(req, res, next){
