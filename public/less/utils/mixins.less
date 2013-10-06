@@ -1,0 +1,173 @@
+/*
+ MIXINS
+*/
+
+.widthMixin(@width){
+	width:   (@width * 10) + 0px;
+	width:   @width + 0rem;
+}
+
+.heightMixin(@height){
+	height:   (@height * 10) + 0px;
+	height:   @height + 0rem;
+}
+
+.paddingMixin(@top, @right, @bottom, @left){
+	padding:   (@top * 10) + 0px (@right * 10) + 0px (@bottom * 10) + 0px (@left * 10) + 0px;
+	padding:   (@top) + 0rem (@right) + 0rem (@bottom) + 0rem (@left) + 0rem;
+}
+
+.marginMixin(@top, @right, @bottom, @left){
+	margin:   (@top * 10) + 0px (@right * 10) + 0px (@bottom * 10) + 0px (@left * 10) + 0px;
+	margin:   (@top) + 0rem (@right) + 0rem (@bottom) + 0rem (@left) + 0rem;
+}
+
+
+// FONTS
+.fontSizeMixin(@fontSize:1.2, @lineHeight: 1.2 * 1.5){
+	font-size:   (@fontSize * 10) + 0px;
+	font-size:   @fontSize + 0rem;
+	line-height: (@lineHeight * 10) + 0px;
+	line-height: @lineHeight + 0rem;
+}
+
+.fontSizeMarginMixin(@fontSize:1.2, @lineHeight: 1.2 * 1.5, @marginTop: 0, @marginBtm:0){
+	font-size:   (@fontSize * 10) + 0px;
+	font-size:   @fontSize + 0rem;
+	line-height: (@lineHeight * 10) + 0px;
+	line-height: @lineHeight + 0rem;
+	
+	margin-top: (@marginTop * 10 + 0px);
+	margin-top: (@marginTop + 0rem);
+	margin-bottom: (@marginBtm * 10 + 0px);
+	margin-bottom: (@marginBtm + 0rem);	
+}
+
+
+
+// CSS3 Properties
+
+.boxSizingMixin(@box-sizing) {
+	-ms-box-sizing: @box-sizing;
+	-moz-box-sizing: @box-sizing; 
+	-webkit-box-sizing: @box-sizing; 
+	box-sizing: @box-sizing;
+}
+
+.borderRadiusMixin(@tlRadius: 0.8, @trRadius: 0.8, @brRadius: 0.8, @blRadius: 0.8) {
+	// px
+	-webkit-border-radius: (@tlRadius*10)+0px (@trRadius*10)+0px (@brRadius*10)+0px (@blRadius*10)+0px;
+	-moz-border-radius: (@tlRadius*10)+0px (@trRadius*10)+0px (@brRadius*10)+0px (@blRadius*10)+0px;
+	-ms-border-radius: (@tlRadius*10)+0px (@trRadius*10)+0px (@brRadius*10)+0px (@blRadius*10)+0px;
+	-o-border-radius: (@tlRadius*10)+0px (@trRadius*10)+0px (@brRadius*10)+0px (@blRadius*10)+0px;
+	border-radius: (@tlRadius*10)+0px (@trRadius*10)+0px (@brRadius*10)+0px (@blRadius*10)+0px;  
+	
+	// rem  
+	-webkit-border-radius: @tlRadius+0rem @trRadius+0rem @brRadius+0rem @blRadius+0rem;
+	-moz-border-radius: @tlRadius+0rem @trRadius+0rem @brRadius+0rem @blRadius+0rem;
+	-ms-border-radius: @tlRadius+0rem @trRadius+0rem @brRadius+0rem @blRadius+0rem;
+	-o-border-radius: @tlRadius+0rem @trRadius+0rem @brRadius+0rem @blRadius+0rem;
+	border-radius: @tlRadius+0rem @trRadius+0rem @brRadius+0rem @blRadius+0rem;
+}
+
+.opacityMixin(@opacity: 0.5) {
+	-moz-opacity: @opacity;
+	-webkit-opacity: @opacity;
+	opacity: @opacity;
+	@opperc: @opacity * 100;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+	filter: ~"alpha(opacity=@{opperc})";
+}
+
+
+
+/*
+Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowetz
+*/
+// Create L1 GRID
+//incl width and gutters in pixels: has outer gutter
+
+.setFluidL1Grid (@columns, @gridRowWidth, @gridGutterWidthPx) 
+{
+	// L1 grid
+	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridGutterWidthPx *  @columns))/ @columns)  / @gridRowWidth);
+	@gridGutterWidthPerc: percentage((@gridGutterWidthPx / @gridRowWidth));
+
+	.row
+	{
+		// set margins
+		[class*="grid"] 
+		{
+			float: left;
+			margin-left: @gridGutterWidthPerc / 2;
+			margin-right: @gridGutterWidthPerc / 2;
+			.boxSizingMixin(border-box);
+			
+		}
+		
+		// create @media grids
+		.setGridRows (@index) when (@index > 0) 
+		{
+		  (.grid@{index}of@{columns}) {  
+			width: (@gridColumnWidthPerc * @index) + (@gridGutterWidthPerc * (@index - 1)); 
+		  }
+		  
+		  .setGridRows(@index - 1);
+		}
+		.setGridRows (0) {}
+		.setGridRows (@columns);
+
+		//full width child
+	  	(.grid@{columns}of@{columns} .row .grid@{columns}of@{columns})
+		{
+			margin-left: 0;
+			margin-right: 0;
+			width:100%;
+		}	
+	}
+}
+
+
+
+// Create L2 GRID
+// incl width and gutters in pixels	has no outer gutter
+
+
+// calculates nested rules under @columns-of-@columnsTotal
+// example: .setFluidL2Grid(10, 12, 960px / (12/10), 20); // calculates nested rules under 10of12: .10of12 .1of12, .10of12 .2of12, etc
+
+.setFluidL2Grid ( @columns , @columnsTotal, @gridRowWidth, @gridGutterWidthPx) 
+{
+	//L2 grid
+	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridGutterWidthPx *  (@columns - 1)))/ @columns)  / @gridRowWidth);
+	@gridGutterWidthPerc: percentage((@gridGutterWidthPx / @gridRowWidth));
+
+	.row
+	{
+		// set margins
+		(.grid@{columns}of@{columnsTotal} [class*="grid"])
+		{
+			float: left;
+			margin-left: @gridGutterWidthPerc / 2;
+			margin-right: @gridGutterWidthPerc / 2;
+		}		
+		//remove margines for columns that as wide as their parents
+		(.grid@{columns}of@{columnsTotal} .grid@{columns}of@{columnsTotal})
+		{
+			margin-left: 0;
+			margin-right: 0;
+			width:100%;
+		}	
+		// create @media grids
+		.setGridRows (@index) when (@index > 0) 
+		{
+		  (.grid@{columns}of@{columnsTotal} .grid@{index}of@{columnsTotal}) {  
+			width: (@gridColumnWidthPerc * @index) + (@gridGutterWidthPerc * (@index - 1)); 
+		  }
+		  
+		  .setGridRows(@index - 1);
+		}
+		.setGridRows (0) {}
+		.setGridRows (@columns - 1);
+	}
+}

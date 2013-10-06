@@ -39,8 +39,19 @@ app.use(express.session());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+
+console.log('What ENV are we in? '+app.get('env'));
+
+app.use(require('less-middleware')({ 
+  src: __dirname + "/public/less"
+  , dest: __dirname + "/public/css"
+  , compress:true
+  , debug: (app.get('env')=='development')?true:false
+  , force: (app.get('env')=='development')?true:false
+  , prefix:'/css'
+}));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Hook in express-hbs and tell it where known directories reside
 app.engine('html', hbs.express3({

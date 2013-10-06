@@ -1,0 +1,107 @@
+@import "/utils/normalize";
+@import "/utils/variables";
+@import "/utils/mixins";
+
+/* start global css */
+
+body {  min-width: 320px; min-width: 32rem; .fontSizeMarginMixin(); font-family: @baseFontFamily; color: @black;  background-color: @white; font-weight: normal; letter-spacing: 0.5px; letter-spacing: 0.05rem; }
+
+button,
+input,
+select,
+textarea { font-family: @baseFontFamily; }
+
+
+
+//////////////////////////////////////
+// Layouts
+
+section,
+header,
+footer,
+nav,
+aside,
+div,
+form,
+ul,
+dl,
+img,
+p{  .boxSizingMixin(border-box);  float:left; width:100%; }
+
+li, button, input, select, textarea, input[type="search"], .button {  .boxSizingMixin(border-box); }
+
+p, pre { .fontSizeMarginMixin(1.4, 1.8, 0, 1.8); }
+
+
+
+
+
+////////////////////////////////////////
+// Grid
+
+#wrap, #main-wrap, .row {  width:100%; float:none; clear:both; margin:0 auto;   }
+#wrap { position:relative; z-index:1; background: @white;}
+.row { display:block; }
+
+
+
+
+////////////////////////////////////////
+// Images
+img { width:100%; }
+
+
+
+
+
+////////////////////////////////////////
+// Links
+
+a, a:hover, a:focus { color: @red; text-decoration: none; font-weight:normal; outline:none; }
+a:hover, a:focus { color: @red; text-decoration: underline; }
+
+
+
+////////////////////////////////////////
+// Lists
+
+ul li { 
+	display: block; float: left;clear: none; list-style-type: none; margin: 0; padding-left:12px; padding-left:1.2rem; 
+}
+
+
+
+////////////////////////////////////////
+// Headings
+
+h1 {  .fontSizeMarginMixin(1.8, 1.8, 0, 1.8); font-weight:600;  }
+h2 {  .fontSizeMarginMixin(1.8, 1.8, 0, 1.8); font-weight:600; }
+
+
+////////////////////////////////////////
+// Forms
+
+form {
+	
+	input { padding:8px; padding:0.8rem; }
+}
+
+
+
+
+////////////////////////////////////////
+// Buttons: 
+
+button, .button {
+	color:@white; border:0; clear:none; font-weight:bold; .paddingMixin(0.5, 0.5, 0.5,0.5); text-decoration:none; text-align: center;
+}
+
+
+
+
+////////////////////////////////////////
+// IMPORTS
+
+
+// grid
+@import "/utils/grid";
