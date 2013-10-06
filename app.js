@@ -4,14 +4,19 @@
  */
 var express = require('express')
   , app = express()
+  , passport = require("passport")
+  , authController = require('./controllers/auth')(passport)
   , controllers = require('./controllers')
   , productController = require('./controllers/products')
+  , cartController = require('./controllers/cart')
   , navController = require('./controllers/navigation')
   , http = require('http')
   , fs = require('fs')
   , path = require('path')
   , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
+
+require('./lib/passport')(passport);	
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,9 +36,22 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('my secret'));
 app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid'}));
 app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+
+console.log('What ENV are we in? '+app.get('env'));
+
+app.use(require('less-middleware')({ 
+  src: __dirname + "/public/less"
+  , dest: __dirname + "/public/css"
+  , compress:true
+  , debug: (app.get('env')=='development')?true:false
+  , force: (app.get('env')=='development')?true:false
+  , prefix:'/css'
+}));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Hook in express-hbs and tell it where known directories reside
 app.engine('html', hbs.express3({
@@ -59,57 +77,22 @@ if ('development' == app.get('env')) {
 
 // home page
 app.get('/', controllers.index);
-app.post('/products', controllers.addProduct);
 
+app.post('/login', authController.loginUser);
+app.post('/register', authController.registerUser);
+
+app.post('/product', productController.addProduct);
+app.get('/product', productController.addProductPage)
 app.get('/product/:id', productController.getProducts);
 
+app.get('/cart', cartController.getCart);
+app.post('/cart', cartController.addToCart);
 
 app.get('/topcategories', navController.getCategories);
 app.get('/subcategories/:id', navController.getCategories);
 app.get('/productsByCategory/:id', productController.getProductsByCategory);
 
 //app.get('/category/:id', navController.getCategory)
-
-/*
-// http://stackoverflow.com/questions/8864626/using-routes-in-express-js
-//app.get('/product/:id', routes.product.list);
-
-function(req, res){	
-	console.log(req.params);
-	var entry = blogEngine.getBlogEntry(req.params.id);
-	res.render('article',{title:entry.title, blog:entry});
-});
-
-
-var products = require('./products');
-
-exports.index = function(req, res){	
-	console.log(req.params);
-		
-	var product = products.getProduct(req.params.id);
-	res.render('product',{
-		title: product.name
-		, productName: product.name
-		, productDesc: product.desc
-	});
-});
-
-
-function(req, res){
-
-	//var entry = blogEngine.getBlogEntry(req.params.id);
-	var product = products.getProduct(3);
-	//var productResults = products.getProduct();
-
-	res.render('home',{
-		title:'N-Commerce Home'
-		, productName: product.name
-		, productDesc: product.desc
-		, productList:products.getProducts()
-	});
-};
-
-*/
 
 //page not found
 app.use(function(req, res, next){

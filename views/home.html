@@ -1,6 +1,13 @@
 
 <!-- home page -->
 home page (tmeplate)
+
+{{#if user}}
+<div id="user">
+	<h1>Welcome <span>{{user.lastName}}</span>!</h1>
+</div>	
+{{/if}}
+
 <h1>Product Info</h1>
 <p id="prod-title">{{productName}}</p>
 <p>{{productDesc}}</p>
@@ -16,20 +23,23 @@ home page (tmeplate)
 {{/each}}
 </ul>
 
-<form action="/products" method="post">
-    Add Product<br>
-    name:<input type="text" name="name"><br>
-    desc:<input type="text" name="desc"><br>
-    <input type="submit" value="Save">
-</form>
+{{> auth/login}}
 
 
 {{#contentFor 'pageStyles'}}
-	<link type="text/css" rel="stylesheet" href="/css/home.css"/>
+	<!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
 	<style>
 		#product-list {
 			background-color:#e1e1e1; 
 		};
+
+		#user {
+			background: #CCC;
+			padding: 20px;
+			margin: 20px;
+		}
+
+		#user span { color:red; text-transform: uppercase; }
 	</style>
 {{/contentFor}}
 
@@ -40,6 +50,38 @@ home page (tmeplate)
 	    	$('#prod-title').click(function() {
 	      		console.log("clicked");
 	    	});
+
+	    	//temp hooks for login and reg forms
+	    	//LOGIN
+	    	$('#login form').on('submit', function(e) {
+
+	    		e.preventDefault();
+	    		$.post('/login', {
+	    				email: $(this).find('input[name="email"]').val(), 
+	    				password: $(this).find('input[name="password"]').val()
+	    			}, 
+	    			function(data) { 
+	    				console.log('login response:', data); 
+	    			}
+	    		);
+	    	});
+
+	    	//REGISTRATION
+	    	$('#register form').on('submit', function(e) {
+
+	    		e.preventDefault();
+	    		$.post('/register', {
+	    				firstName: $(this).find('input[name="firstName"]').val(), 
+	    				lastName: $(this).find('input[name="lastName"]').val(), 
+	    				email: $(this).find('input[name="email"]').val(), 
+	    				password: $(this).find('input[name="password"]').val()
+	    			}, 
+	    			function(data) { 
+	    				console.log('register response:', data); 
+	    			}
+	    		);
+	    	});
+
 	    })(jQuery);
 
 	</script>

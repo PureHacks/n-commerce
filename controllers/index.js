@@ -8,6 +8,11 @@ var Product = require('../models/Product').Product;
 
 exports.index = function(req, res){
 
+  //check if user is logged in
+  var user = req.isAuthenticated() ? req.user : false;
+
+  console.log('logged in', user);
+
 	//set cookie - http://expressjs.com/api.html#res.cookie
 	res.cookie('test', 'cookie value josh', {signed: true});
 	
@@ -28,31 +33,7 @@ exports.index = function(req, res){
     res.render('home',{
       title:'N-Commerce Home'
       , productList: products
+      , user : user
     });
   };
-};
-
-
-
-exports.addProduct = function(req, res){
-  var name = req.param('name');
-  var desc = req.param('desc');
-
-  // create instance of Product from req params
-  var product = new Product({
-    name: name,
-    dec: desc
-  });  //instance created
-
-  product.save(function(err) {
-    if(err) {
-      //console.log('error saving product name: ' + product.name);
-    }
-    res.render('home',{
-      title:'N-Commerce Home'
-      , productName: product.name
-      , productDesc: product.desc
-      , productList: [product]
-    });
-  })
 };
