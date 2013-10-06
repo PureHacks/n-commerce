@@ -12,7 +12,8 @@ var db = require('../lib/storage').db
 
 // create the Cart model
 var Cart = db.model('Cart', db.Schema({
-  products: [{ type: db.Schema.Types.ObjectId, ref: 'Product' }]
+  products: [{ type: db.Schema.Types.ObjectId, ref: 'Product' }],
+  quantities: 'array'
 }));
 
 // export Product model

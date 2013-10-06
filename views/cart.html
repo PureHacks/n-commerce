@@ -8,9 +8,10 @@ Cart page (template)
 <ul id="cart-list">
     {{#each productList}}
     <li>
-        <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
-        <p>{{sku}}</p>
-        <p>{{desc}}</p>
+        <a href="/product/{{product.id}}">{{product.name}}&nbsp;{{product.price}}</a><br/>
+        <p>SKU: {{product.sku}}</p>
+        <p>Description: {{product.desc}}</p>
+        <p>Quantity: {{quantity}} pc(s)</p>
     </li>
     {{/each}}
 </ul>
