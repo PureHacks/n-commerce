@@ -1,0 +1,7 @@
+{ "_id" : { "$oid" : "52519b7ba5b43e0063000001" }, "name" : "Apparel" }
+{ "_id" : { "$oid" : "52519c23a5b43e0063000002" }, "name" : "Shoes" }
+{ "_id" : { "$oid" : "52519c28a5b43e0063000003" }, "name" : "Accessories" }
+{ "_id" : { "$oid" : "52519c3fa5b43e0063000004" }, "name" : "Watches" }
+{ "_id" : { "$oid" : "52519d0f9ffe087ebdf100f1" }, "parentId" : { "$oid" : "52519b7ba5b43e0063000001" }, "name" : "Men" }
+{ "_id" : { "$oid" : "52519d3b9ffe087ebdf100f3" }, "parentId" : { "$oid" : "52519b7ba5b43e0063000001" }, "name" : "Women" }
+{ "_id" : { "$oid" : "52519d3b9ffe087ebdf100f4" }, "parentId" : { "$oid" : "52519b7ba5b43e0063000001" }, "name" : "Kids" }

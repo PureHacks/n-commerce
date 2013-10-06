@@ -17,7 +17,7 @@ var Product = db.model('Product', db.Schema({
   price: 'number',
   image: 'string',
   sku: 'string',
-  categories: {type:db.Schema.Types.ObjectId, default: null},
+  categories: db.Schema.Types.ObjectId,
   dateAdded: 'date',
   quantity: 'number',
   status: 'string'

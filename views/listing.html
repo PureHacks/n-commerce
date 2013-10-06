@@ -1,0 +1,47 @@
+
+<!-- home page -->
+home page (tmeplate)
+<h1>Category</h1>
+<p id="prod-title">{{productName}}</p>
+<p>{{productDesc}}</p>
+
+
+<h1>Product List</h1>
+<ul id="product-list">
+    {{#each productList}}
+    <li>
+        <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
+        {{desc}}
+    </li>
+    {{/each}}
+</ul>
+
+<form action="/products" method="post">
+    Add Product<br>
+    name:<input type="text" name="name"><br>
+    desc:<input type="text" name="desc"><br>
+    <input type="submit" value="Save">
+</form>
+
+
+{{#contentFor 'pageStyles'}}
+<link type="text/css" rel="stylesheet" href="/css/home.css"/>
+<style>
+    #product-list {
+        background-color:#e1e1e1;
+    };
+</style>
+{{/contentFor}}
+
+
+{{#contentFor 'pageScripts'}}
+<script>
+    (function($){
+        $('#prod-title').click(function() {
+            console.log("clicked");
+        });
+    })(jQuery);
+
+</script>
+{{/contentFor}}
+

@@ -89,6 +89,10 @@ app.get('/cart', cartController.getCart);
 app.post('/cart', cartController.addToCart);
 
 app.get('/topcategories', navController.getCategories);
+app.get('/subcategories/:id', navController.getCategories);
+app.get('/productsByCategory/:id', productController.getProductsByCategory);
+
+//app.get('/category/:id', navController.getCategory)
 
 //page not found
 app.use(function(req, res, next){
