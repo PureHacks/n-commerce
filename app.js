@@ -65,6 +65,10 @@ app.get('/product/:id', productController.getProducts);
 
 
 app.get('/topcategories', navController.getCategories);
+app.get('/subcategories/:id', navController.getCategories);
+app.get('/productsByCategory/:id', productController.getProductsByCategory);
+
+//app.get('/category/:id', navController.getCategory)
 
 /*
 // http://stackoverflow.com/questions/8864626/using-routes-in-express-js
