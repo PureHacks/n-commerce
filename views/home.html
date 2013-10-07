@@ -2,8 +2,6 @@
 <!-- home page -->
 home page (tmeplate)
 
-
-
 <h1>Product Info</h1>
 <p id="prod-title">{{productName}}</p>
 <p>{{productDesc}}</p>
@@ -18,8 +16,6 @@ home page (tmeplate)
    </li>
 {{/each}}
 </ul>
-
-{{> auth/login}}
 
 {{#contentFor 'pageStyles'}}
 	<!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
@@ -42,61 +38,19 @@ home page (tmeplate)
 
 
 {{#contentFor 'pageScripts'}}
-<script src="bower_components/requirejs/require.js"></script>
-        <script>
-            //Load common code that includes config, then load the app
-            //logic for this page. Do the require calls here instead of
-            //a separate file so after a build there are only 2 HTTP
-            //requests instead of three.
-            require(['js/common'], function (common) {
-                //js/common sets the baseUrl to be js/ so
-                //can just ask for 'app/main1' here instead
-                //of 'js/app/main1'
-                require(['views/pageview']);
-            });
-        </script>
 
-	<script>
-		/*
-	    (function($){
-	    	$('#prod-title').click(function() {
-	      		console.log("clicked");
-	    	});
+<script>
+    //Load common code that includes config, then load the app
+    //logic for this page. Do the require calls here instead of
+    //a separate file so after a build there are only 2 HTTP
+    //requests instead of three.
+    require(['js/common'], function (common) {
+        //js/common sets the baseUrl to be js/ so
+        //can just ask for 'app/main1' here instead
+        //of 'js/app/main1'
+        require(['views/pageview']);
+    });
+</script>
 
-	    	//temp hooks for login and reg forms
-	    	//LOGIN
-	    	$('#login form').on('submit', function(e) {
-
-	    		e.preventDefault();
-	    		$.post('/login', {
-	    				email: $(this).find('input[name="email"]').val(), 
-	    				password: $(this).find('input[name="password"]').val()
-	    			}, 
-	    			function(data) { 
-	    				console.log('login response:', data); 
-	    			}
-	    		);
-	    	});
-
-	    	//REGISTRATION
-	    	$('#register form').on('submit', function(e) {
-
-	    		e.preventDefault();
-	    		$.post('/register', {
-	    				firstName: $(this).find('input[name="firstName"]').val(), 
-	    				lastName: $(this).find('input[name="lastName"]').val(), 
-	    				email: $(this).find('input[name="email"]').val(), 
-	    				password: $(this).find('input[name="password"]').val()
-	    			}, 
-	    			function(data) { 
-	    				console.log('register response:', data); 
-	    			}
-	    		);
-	    	});
-
-	    })(jQuery);
-		*/
-
-	</script>
 {{/contentFor}}
 

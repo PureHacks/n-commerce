@@ -4,6 +4,9 @@
     <link type="text/css" rel="stylesheet" href="/css/global.css"/>
     <link type="text/css" rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css"/>
     {{{block "pageStyles"}}}
+    <script src="bower_components/requirejs/require.js"></script>
+     <!-- A block is placeholder for pieces of content defined in a page. Top of the page since we're using require -->
+    {{{block 'pageScripts'}}}
   </head>
   <body>
 
@@ -17,8 +20,6 @@
     <!-- Placeholder for page content. -->
     {{{body}}}
     
-
-    <!-- A block is placeholder for pieces of content defined in a page. -->
-    {{{block 'pageScripts'}}}
+    {{> auth/login}}
   </body>
 </html>
