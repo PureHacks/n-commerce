@@ -2,11 +2,7 @@
 <!-- home page -->
 home page (tmeplate)
 
-{{#if user}}
-<div id="user">
-	<h1>Welcome <span>{{user.lastName}}</span>!</h1>
-</div>	
-{{/if}}
+
 
 <h1>Product Info</h1>
 <p id="prod-title">{{productName}}</p>
@@ -25,7 +21,6 @@ home page (tmeplate)
 
 {{> auth/login}}
 
-
 {{#contentFor 'pageStyles'}}
 	<!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
 	<style>
@@ -40,12 +35,29 @@ home page (tmeplate)
 		}
 
 		#user span { color:red; text-transform: uppercase; }
+
+		button { color:black; }
 	</style>
 {{/contentFor}}
 
 
 {{#contentFor 'pageScripts'}}
+<script src="bower_components/requirejs/require.js"></script>
+        <script>
+            //Load common code that includes config, then load the app
+            //logic for this page. Do the require calls here instead of
+            //a separate file so after a build there are only 2 HTTP
+            //requests instead of three.
+            require(['js/common'], function (common) {
+                //js/common sets the baseUrl to be js/ so
+                //can just ask for 'app/main1' here instead
+                //of 'js/app/main1'
+                require(['views/pageview']);
+            });
+        </script>
+
 	<script>
+		/*
 	    (function($){
 	    	$('#prod-title').click(function() {
 	      		console.log("clicked");
@@ -83,6 +95,7 @@ home page (tmeplate)
 	    	});
 
 	    })(jQuery);
+		*/
 
 	</script>
 {{/contentFor}}

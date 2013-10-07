@@ -2,7 +2,7 @@
   <head>
     <title>{{title}}</title>
     <link type="text/css" rel="stylesheet" href="/css/global.css"/>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css"/>
     {{{block "pageStyles"}}}
   </head>
   <body>
@@ -11,6 +11,9 @@
     {{> site-nav}}
 
     <h2>DEFAULT LAYOUT</h2>
+
+    {{> profile}}
+
     <!-- Placeholder for page content. -->
     {{{body}}}
     

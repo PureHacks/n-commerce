@@ -1,0 +1,26 @@
+{
+  "name": "n-commerce",
+  "version": "0.0.1",
+  "homepage": "https://github.com/PureHacks/n-commerce",
+  "authors": [
+    "ryan.johnson <ryan.johnson@nurun.com>"
+  ],
+  "description": "n-commerce dependencies",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.0.0",
+    "requirejs": "~2.1.8",
+    "underscore": "~1.5.2",
+    "jquery": "~2.0.3",
+    "jquery.cookie": "~1.4.0",
+    "fancybox": "~2.1.5"
+  }
+}

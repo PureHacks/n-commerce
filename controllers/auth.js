@@ -22,6 +22,10 @@ module.exports = function(passport) {
 			})(req, res, next);
 		},
 
+		logoutUser : function(req, res, next) {
+			 req.logout();
+			 return res.json({logout:'success'});
+		},
 
 		registerUser : function(req, res) {
 
