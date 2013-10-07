@@ -6,12 +6,14 @@
  */
 
 // get a connection to the DB
+
+
 var db = require('../lib/storage').db
-    , Category = require('../models/Category');
+    , Category = require('../models/Category')
+    , textSearch = require('mongoose-text-search');;
 
 
-// create the Product model
-var Product = db.model('Product', db.Schema({
+var productSchema = db.Schema({
   name: 'string',
   desc: 'string',
   price: 'number',
@@ -21,7 +23,16 @@ var Product = db.model('Product', db.Schema({
   dateAdded: 'date',
   quantity: 'number',
   status: 'string'
-}));
+});
+
+productSchema.plugin(textSearch);
+
+productSchema.index({name :'text'});
+
+
+
+// create the Product model
+var Product = db.model('Product', productSchema);
 
 // export Product model
 exports.Product = Product;
