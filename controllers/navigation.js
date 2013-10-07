@@ -54,23 +54,17 @@ exports.getCategories = function(req, res) {
 };
 
 
-/*
+
 exports.getCategoryInfo = function(req, res) {
 
   console.log("req.params=", req.params);
 
   // this is the product controller
   var category = {};
-  var subCategories = [];
-  var products = [];
 
   var id = req.params.id;
 
-  // products is response array
-
-
-
-    Category.findById(""+id, function(err, category){
+   Category.findById(""+id, function(err, category){
 
       if(err) {
         renderResponse([]);
@@ -80,14 +74,13 @@ exports.getCategoryInfo = function(req, res) {
   });
 
 
-  var renderResponse = function (category, subCategories, products) {
+  var renderResponse = function (category) {
 
     //console.log("id=", id, ", lenmgth=", products.length, "products=", products);
 
-    res.render('categories',{
-      title:'Categories'
-      , categoryName: category.name
-      , categorieslength: categories.length
+    res.render('category',{
+      title:'category'
+      , category: JSON.stringify(category)
     });
   };
-};*/
+};

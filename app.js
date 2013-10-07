@@ -91,7 +91,10 @@ app.post('/cart', cartController.addToCart);
 
 app.get('/topcategories', navController.getCategories);
 app.get('/subcategories/:id', navController.getCategories);
+app.get('/category/:id', navController.getCategoryInfo);
 app.get('/productsByCategory/:id', productController.getProductsByCategory);
+
+app.get('/searchProducts/:searchTerm', productController.searchProducts);
 
 //app.get('/category/:id', navController.getCategory)
 
