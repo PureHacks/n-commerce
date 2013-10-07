@@ -82,7 +82,7 @@ app.post('/login', authController.loginUser);
 app.post('/register', authController.registerUser);
 
 app.post('/product', productController.addProduct);
-//app.get('/product', productController.addProductPage)
+app.get('/product', productController.addProductPage)
 app.get('/product/:id', productController.getProducts);
 
 app.get('/cart', cartController.getCart);
