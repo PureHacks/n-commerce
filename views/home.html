@@ -1,39 +1,33 @@
 
-<!-- home page -->
-home page (tmeplate)
+<div class="row">
+    <div class="grid-12of12 grid-8of8 grid-4of4">
 
-<h1>Product Info</h1>
-<p id="prod-title">{{productName}}</p>
-<p>{{productDesc}}</p>
+        <div class="grid-8of12 grid-4of8 grid-4of4 marg-l-0">
+            {{> site-nav}}
+        
+            {{> profile}}
 
+            {{> auth/login}}
+        </div>
 
-<h1>Product List</h1>
-<ul id="product-list">
-{{#each productList}}
-   <li>
-      <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
-      {{desc}}
-   </li>
-{{/each}}
-</ul>
+        <div class="grid-4of12 grid-4of8 grid-4of4 marg-r-0 marg-t-1unit">
+            <h1>Product List</h1>
+            <ul id="product-list">
+            {{#each productList}}
+               <li>
+                  <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
+                  {{desc}}
+               </li>
+            {{/each}}
+            </ul>
+        </div>
+
+    </div>
+</div>
 
 {{#contentFor 'pageStyles'}}
-	<!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
-	<style>
-		#product-list {
-			background-color:#e1e1e1; 
-		};
+    <!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
 
-		#user {
-			background: #CCC;
-			padding: 20px;
-			margin: 20px;
-		}
-
-		#user span { color:red; text-transform: uppercase; }
-
-		button { color:black; }
-	</style>
 {{/contentFor}}
 
 

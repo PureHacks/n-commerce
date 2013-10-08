@@ -81,35 +81,33 @@
 
 
 
-/*
-Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowetz
-*/
-// Create L1 GRID
-//incl width and gutters in pixels: has outer gutter
+//Responsive Grid: Inspired by Twitter Bootstrap. Repurposed by Josh Arndt and Michael Mrowetz (Nurun Toronto)
 
-.setFluidL1Grid (@columns, @gridRowWidth, @gridGutterWidthPx) 
+// Level 1 GRID
+
+.setFluidL1Grid (@columns, @gridRowWidth, @gridMarginWidthPx) 
 {
 	// L1 grid
-	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridGutterWidthPx *  @columns))/ @columns)  / @gridRowWidth);
-	@gridGutterWidthPerc: percentage((@gridGutterWidthPx / @gridRowWidth));
+	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridMarginWidthPx *  @columns))/ @columns)  / @gridRowWidth);
+	@gridMarginWidthPerc: percentage((@gridMarginWidthPx / @gridRowWidth));
 
 	.row
 	{
 		// set margins
-		[class*="grid"] 
+		[class*="grid-"] 
 		{
 			float: left;
-			margin-left: @gridGutterWidthPerc / 2;
-			margin-right: @gridGutterWidthPerc / 2;
+			margin-left: @gridMarginWidthPerc / 2;
+			margin-right: @gridMarginWidthPerc / 2;
 			.boxSizingMixin(border-box);
 			
 		}
-		
+
 		// create @media grids
 		.setGridRows (@index) when (@index > 0) 
 		{
-		  (.grid@{index}of@{columns}) {  
-			width: (@gridColumnWidthPerc * @index) + (@gridGutterWidthPerc * (@index - 1)); 
+		  .grid-@{index}of@{columns} {  
+			width: (@gridColumnWidthPerc * @index) + (@gridMarginWidthPerc * (@index - 1)); 
 		  }
 		  
 		  .setGridRows(@index - 1);
@@ -118,7 +116,7 @@ Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowe
 		.setGridRows (@columns);
 
 		//full width child
-	  	(.grid@{columns}of@{columns} .row .grid@{columns}of@{columns})
+	  	.grid-@{columns}of@{columns} .row .grid-@{columns}of@{columns}
 		{
 			margin-left: 0;
 			margin-right: 0;
@@ -128,31 +126,30 @@ Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowe
 }
 
 
+/*
+	Create L2 GRID
+	calculates nested rules under @columns-of-@columnsTotal
+	example: .setFluidL2Grid(10, 12, 960px / (12/10), 20); // calculates nested rules under 10of12: .10of12 .1of12, .10of12 .2of12, etc
+*/
 
-// Create L2 GRID
-// incl width and gutters in pixels	has no outer gutter
-
-
-// calculates nested rules under @columns-of-@columnsTotal
-// example: .setFluidL2Grid(10, 12, 960px / (12/10), 20); // calculates nested rules under 10of12: .10of12 .1of12, .10of12 .2of12, etc
-
-.setFluidL2Grid ( @columns , @columnsTotal, @gridRowWidth, @gridGutterWidthPx) 
+.setFluidL2Grid ( @columns , @columnsTotal, @gridRowWidth, @gridMarginWidthPx) 
 {
-	//L2 grid
-	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridGutterWidthPx *  (@columns - 1)))/ @columns)  / @gridRowWidth);
-	@gridGutterWidthPerc: percentage((@gridGutterWidthPx / @gridRowWidth));
+
+	@gridColumnWidthPerc: percentage(((@gridRowWidth -  (@gridMarginWidthPx *  (@columns - 1)))/ @columns)  / @gridRowWidth);
+	@gridMarginWidthPerc: percentage((@gridMarginWidthPx / @gridRowWidth));
 
 	.row
 	{
 		// set margins
-		(.grid@{columns}of@{columnsTotal} [class*="grid"])
+		.grid-@{columns}of@{columnsTotal} [class*="grid-"]
 		{
 			float: left;
-			margin-left: @gridGutterWidthPerc / 2;
-			margin-right: @gridGutterWidthPerc / 2;
+			margin-left: @gridMarginWidthPerc / 2;
+			margin-right: @gridMarginWidthPerc / 2;
 		}		
-		//remove margines for columns that as wide as their parents
-		(.grid@{columns}of@{columnsTotal} .grid@{columns}of@{columnsTotal})
+
+		//remove margins for columns = parent
+		.grid-@{columns}of@{columnsTotal} .grid-@{columns}of@{columnsTotal}
 		{
 			margin-left: 0;
 			margin-right: 0;
@@ -161,10 +158,10 @@ Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowe
 		// create @media grids
 		.setGridRows (@index) when (@index > 0) 
 		{
-		  (.grid@{columns}of@{columnsTotal} .grid@{index}of@{columnsTotal}) {  
-			width: (@gridColumnWidthPerc * @index) + (@gridGutterWidthPerc * (@index - 1)); 
-		  }
-		  
+			.grid-@{columns}of@{columnsTotal} .grid-@{index}of@{columnsTotal} {  
+				width: (@gridColumnWidthPerc * @index) + (@gridMarginWidthPerc * (@index - 1)); 
+			}
+	  
 		  .setGridRows(@index - 1);
 		}
 		.setGridRows (0) {}

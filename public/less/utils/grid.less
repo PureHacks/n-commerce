@@ -1,6 +1,3 @@
-/* 
-    Responsive Grid: Inspired by Twitter. Repurposed by Josh Arndt and Michael Mrowetz
-*/
 
 // mobile
 @media (max-width: 639px){
@@ -17,10 +14,10 @@
 	.tablet-only, .desktop-only, .mobile-hide { display: none;}
 	.show-mobile { display: block;}
 
-	.marg-l-0-m { margin-left:0; }
-	.marg-r-0-m { margin-right:0; }
-	.marg-lr-0-m { margin-left:0; margin-right:0; }
-	.clear-r-m { clear:right; }
+	.marg-l-0-m, .row .marg-l-0-m, body .row .row .marg-l-0-m { margin-left:0; }
+	.marg-r-0-m, .row .marg-r-0-m, body .row .row .marg-r-0-m { margin-right:0; }
+	.marg-lr-0-m, .row .marg-lr-0-m, body .row .row .marg-lr-0-m { margin-left:0; margin-right:0; }
+
 }
 
 
@@ -35,12 +32,11 @@
     .setFluidL2Grid(5, 8, 640px / (8/5), 20);
     .setFluidL2Grid(4, 8, 640px / (8/4), 20);
 
- 
 	.mobile-only, .desktop-only, .tablet-hide {display: none;}
-	.marg-l-0-t { margin-left:0; }
-	.marg-r-0-t { margin-right:0; }
-	.marg-lr-0-t { margin-left:0; margin-right:0; }
 
+	.marg-l-0-t, .row .marg-l-0-t, body .row .row .marg-l-0-t { margin-left:0; }
+	.marg-r-0-t, .row .marg-r-0-t, body .row .row .marg-r-0-t { margin-right:0; }
+	.marg-lr-0-t, .row .marg-lr-0-t, body .row .row .marg-lr-0-t { margin-left:0; margin-right:0; }
 }
 
 
@@ -64,15 +60,26 @@
 
 	.mobile-only, .tablet-only, .desktop-hide {display: none;}
 
-	.marg-l-0-d { margin-left:0; }
-	.marg-r-0-d { margin-right:0; }
-	.marg-lr-0-d { margin-left:0; margin-right:0; }
+	.marg-l-0-d, .row .marg-l-0-d, body .row .row .marg-l-0-d { margin-left:0; }
+	.marg-r-0-d, .row .marg-r-0-d, body .row .row .marg-r-0-d { margin-right:0; }
+	.marg-lr-0-d, .row .marg-lr-0-d, body .row .row .marg-lr-0-d { margin-left:0; margin-right:0; }
 }
 
 
 // MARGINS
+.marg-l-0, 
+.row [class*="grid-"] .marg-l-0, 
+.row [class*="grid-"] [class*="grid-"] .marg-l-0, 
+.row [class*="grid-"] .row [class*="grid-"] .marg-l-0 { margin-left:0; }
+
+.marg-r-0, 
+.row [class*="grid-"] .marg-r-0, 
+.row [class*="grid-"] [class*="grid-"] .marg-r-0, 
+.row [class*="grid-"] .row [class*="grid-"] .marg-r-0 { margin-right:0; }s
+
+
 .marg-t-0 { margin-top:0; }
-.marg-t-1 { margin-top:10px; margin-top:1rem; }
+.marg-t-1unit { margin-top:18px; margin-top:1.8rem; }
 
 .marg-b-0 {margin-bottom: 0;}
 .marg-b-1unit { margin-bottom:18px; margin-bottom:1.8rem; }
