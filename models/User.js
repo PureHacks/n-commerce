@@ -72,30 +72,17 @@ UserSchema.statics.getByEmail = function(email, done) {
     });
 };
 
+UserSchema.statics.getById = function(id, done) {
+
+	this.findOne({ _id: id })
+    .populate('cart')
+    .exec(function(err, user) {
+      console.log('getById: ', user, id);
+      done(err, user);
+    });
+};
+
 /*
-
-
-UserSchema.statics.signup = function(email, password, done){
-	var User = this;
-	hash(password, function(err, salt, hash){
-		if(err) throw err;
-		// if (err) return done(err);
-		User.create({
-			email : email,
-			salt : salt,
-			hash : hash
-		}, function(err, user){
-			if(err) throw err;
-			// if (err) return done(err);
-			done(null, user);
-		});
-	});
-}
-
-
-
-
-
 
 
 UserSchema.statics.findOrCreateFaceBookUser = function(profile, done){

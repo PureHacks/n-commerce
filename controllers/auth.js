@@ -23,8 +23,12 @@ module.exports = function(passport) {
 		},
 
 		logoutUser : function(req, res, next) {
-			 req.logout();
-			 return res.json({logout:'success'});
+
+			//remove logged in cookie
+			res.clearCookie('rememberme');
+
+			req.logout();
+			return res.json({logout:'success'});
 		},
 
 		registerUser : function(req, res) {
@@ -51,6 +55,28 @@ module.exports = function(passport) {
 				}
 			});
 
+		},
+
+		getUser : function(req, res) {
+
+			var id 		     = req.param('id') || -1,
+				loggedInUser = req.isAuthenticated() ? req.user : false;
+
+
+			User.getById(id, function(err, user) {
+
+				var userIsLoggedIn = loggedInUser ? (loggedInUser.id == user.id) : false;
+
+				var response = user ? {
+					firstName: user.firstName,
+					lastName: user.lastName,
+					id: user.id,
+					email: user.email,
+					loggedIn: userIsLoggedIn
+				} : { error: 'user not found.' };
+
+				res.json(response);
+			});
 		}
 	}
 };
@@ -66,8 +92,12 @@ function login(req, res, user) {
 			firstName: req.user.firstName,
 			lastName: req.user.lastName,
 			id: req.user.id,
-			email: req.user.email
+			email: req.user.email,
+			loggedIn: true
 		};
+
+		//set cookie to remember logged in user
+		res.cookie('rememberme', req.user.id, { /*maxAge: 900000,*/ httpOnly: false });
 
 		return res.json(user);
 	});

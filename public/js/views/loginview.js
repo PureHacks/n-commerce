@@ -19,7 +19,6 @@ function(
         },
      	
      	initialize: function() {
-            console.log('inseide', this.model);
      	},
 
         onLoginSubmit : function(e) {
@@ -45,6 +44,22 @@ function(
 
             e.preventDefault();
 
+
+
+            this.model.save({
+                firstName: this.$('#register input[name="firstName"]').val(), 
+                lastName: this.$('#register input[name="lastName"]').val(), 
+                email: this.$('#register input[name="email"]').val(), 
+                password: this.$('#register input[name="password"]').val()
+            }, 
+            {
+                wait: true,
+                success: function() {
+                    $.fancybox.close();
+                }
+            });
+
+            /*
             var self = this;
 
             $.ajax({
@@ -60,6 +75,7 @@ function(
                 success : $.proxy(self.onSubmitSuccess, self),
                 error : $.proxy(self.onSubmitError, self)
             });
+            */
 
         },
 
@@ -72,12 +88,7 @@ function(
 
             $.fancybox.close();
             
-            this.model.set({
-                id : data.id,
-                lastName : data.lastName,
-                email: data.email,
-                loggedin : true
-            });
+            this.model.set(data);
         },
 
         onSubmitError : function(error) {

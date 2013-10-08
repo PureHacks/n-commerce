@@ -27,7 +27,7 @@ function(
 	
     	 		// $.cookie.json = true;
 	
-    	 		var userModel = this.initUser();
+    	 		var userModel = new UserModel();
     	 		
     	 		var loginView = new LoginView({
     	 			model:userModel
@@ -36,16 +36,19 @@ function(
     	 		var profileView = new ProfileView({
     	 			model:userModel
     	 		});
+
+                this.checkForLoggedIn(userModel);
     	 	},
 	
-    	 	initUser : function() {
-				
-				// var userCookie = $.cookie('cookie.sid');
-	
-    	 		// console.log('cookie', userCookie);
+    	 	checkForLoggedIn : function(userModel) {
 
-				return new UserModel();
-    	 		
+                var userID = $.cookie('rememberme');
+                
+                if(userID) {
+                    userModel.fetch({
+                        data: { id: userID }
+                    });
+                }
     	 	}
 	
     	});

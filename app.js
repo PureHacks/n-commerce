@@ -34,7 +34,7 @@ app.use(express.methodOverride());
   http://expressjs.com/api.html#req.signedCookies
 */
 app.use(express.cookieParser('my secret'));
-app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid', cookie:  { path: '/', httpOnly: false }}));
+app.use(express.cookieSession({secret:'another secret', key: 'cookie.sid', cookie:  { path: '/', httpOnly: true }}));
 app.use(express.session());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -80,7 +80,8 @@ app.get('/', controllers.index);
 
 app.post('/login', authController.loginUser);
 app.get('/logout', authController.logoutUser);
-app.post('/register', authController.registerUser);
+app.get('/user', authController.getUser);
+app.post('/user', authController.registerUser);
 
 app.post('/product', productController.addProduct);
 app.get('/product', productController.addProductPage)

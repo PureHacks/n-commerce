@@ -10,10 +10,14 @@ function(
 ){
     
     var User = Backbone.Model.extend({
-    	
+        
+        url: '/user',
+        
         defaults : {
             "isLoggedIn" : false
-        }
+        },
+
+        // sync : function(method, collection, options) {}
 
     });
 

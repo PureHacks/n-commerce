@@ -19,12 +19,12 @@ function(
      	
      	initialize: function() {
             
-            this.listenTo(this.model, 'change:loggedin', this.onUserUpdate);
+            this.listenTo(this.model, 'change', this.onUserUpdate);
      	},
 
         onToggleSubmitClick : function(e) {
 
-            var loggedIn = this.model.get('loggedin');
+            var loggedIn = this.model.get('loggedIn');
 
             if(loggedIn) {
                this.logoutUser();
@@ -55,8 +55,8 @@ function(
         },
 
         onUserUpdate : function(user) {
-            
-            var loggedIn = user.get('loggedin');
+
+            var loggedIn = user.get('loggedIn');
 
             if(loggedIn) {
 
