@@ -1,6 +1,6 @@
 require.config({
 
-    baseUrl: "/js", // generally the same directory as the script used in a data-main attribute for the top level script
+    baseUrl: "js", // generally the same directory as the script used in a data-main attribute for the top level script
     
     paths: {
         'jquery': '../bower_components/jquery/jquery',
