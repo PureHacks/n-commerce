@@ -51,12 +51,9 @@ app.use(require('less-middleware')({
   , prefix:'/css'
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public/bower_components')));
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname+'/public'));
 
-
-console.log('path public', path.join(__dirname, 'public'));
-console.log('path bower', path.join(__dirname, 'public/bower_components'));
 
 // Hook in express-hbs and tell it where known directories reside
 app.engine('html', hbs.express3({
