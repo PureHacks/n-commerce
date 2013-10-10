@@ -62,6 +62,7 @@ app.engine('html', hbs.express3({
 );
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
+app.use('public/bower_components', express.static(path.join(__dirname, 'public/bower_components')));
 
 
 // development only
