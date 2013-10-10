@@ -50,7 +50,9 @@ app.use(require('less-middleware')({
   , force: (app.get('env')=='development')?true:false
   , prefix:'/css'
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname+'/public'));
 
 
 // Hook in express-hbs and tell it where known directories reside
@@ -62,7 +64,8 @@ app.engine('html', hbs.express3({
 );
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-app.use('public/bower_components', express.static(path.join(__dirname, 'public/bower_components')));
+
+
 
 
 // development only
