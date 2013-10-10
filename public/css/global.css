@@ -40,8 +40,8 @@ input[type=text],input[type=date],input[type=email],input[type=file],input[type=
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 textarea{overflow:auto;vertical-align:top;}
 table{border-collapse:collapse;border-spacing:0}
-body{min-width:320px;min-width:32rem;font-size:12px;font-size:1.2rem;line-height:18px;line-height:1.7999999999999998rem;margin-top:0;margin-bottom:0;font-family:"Arial, sans-serif";color:#000;background-color:#fff;font-weight:normal;letter-spacing:0.5px;letter-spacing:0.05rem}
-button,input,select,textarea{font-family:"Arial, sans-serif"}
+@font-face{font-family:'lucidaSans';src:url('/fonts/lsans-webfont.eot');src:url('/fonts/lsans-webfont.eot?#iefix') format('embedded-opentype'),url('/fonts/lsans-webfont.woff') format('woff'),url('/fonts/lsans-webfont.ttf') format('truetype'),url('/fonts/lsans-webfont.svg#lucidaSans') format('svg');font-weight:normal;font-style:normal}body{min-width:320px;min-width:32rem;font-size:12px;font-size:1.2rem;line-height:18px;line-height:1.7999999999999998rem;margin-top:0;margin-bottom:0;font-family:lucidaSans,Arial,sans-serif;color:#000;background-color:#fff;font-weight:normal;letter-spacing:0.5px;letter-spacing:0.05rem}
+button,input,select,textarea{font-family:lucidaSans,Arial,sans-serif}
 section,header,footer,nav,aside,div,form,ul,dl,img,p{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;width:100%}
 li,button,input,select,textarea,input[type="search"],.button{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 p,pre{font-size:14px;font-size:1.4rem;line-height:18px;line-height:1.8rem;margin-top:0;margin-bottom:18px;margin-bottom:1.8rem}
@@ -64,7 +64,13 @@ button,.button{color:#fff;border:0;clear:none;font-weight:bold;padding:5px 5px 5
 .marg-b-1unit{margin-bottom:18px;margin-bottom:1.8rem}
 .float-r{float:right}
 .float-l{float:left}
-#logo-wrap{text-align:center;float:left}
+#logo-wrap{float:left}
 #logo{cursor:pointer;display:inline-block;margin:18px 0 18px 0;margin:1.8rem 0 1.8rem 0;width:127px;width:12.7rem;height:41px;height:4.1rem;background:url("/images/global-sprite.png") 0 0 no-repeat}
-#global-nav{float:left;-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#68c208;height:38px;height:3.8rem;overflow:hidden;padding:10px 10px 10px 10px;padding:1rem 1rem 1rem 1rem}#global-nav a{float:left;clear:none;font-size:13px;font-size:1.3rem;line-height:18px;line-height:1.8rem;text-transform:uppercase;color:#fff}#global-nav a span.icon{background:url("/images/global-sprite.png") no-repeat;width:30px;width:3rem;height:35px;height:3.5rem;float:left;display:block;margin-top:-5px;margin-top:-0.5rem}
-#global-nav a #nav-menu{background-position:-130px 0}
+#global-nav{float:left;-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#68c208;height:38px;height:3.8rem;overflow:hidden}#global-nav a{float:left;clear:none;padding:10px 0 10px 0;padding:1rem 0 1rem 0;font-size:13px;font-size:1.3rem;line-height:18px;line-height:1.8rem;text-transform:uppercase;color:#fff;font-weight:bold;width:22%;text-align:center}#global-nav a span.txt{display:none}
+#global-nav a span.icon{background:url("/images/global-sprite.png") no-repeat;width:30px;width:3rem;height:35px;height:3.5rem;display:inline-block;margin:-5px 0 0 0;margin:-0.5rem 0 0 0;text-align:center}
+#global-nav a#nav-cats{width:13%}#global-nav a#nav-cats span.icon{background-position:-130px 0;text-align:left}
+#global-nav a#nav-sigin{width:21%}#global-nav a#nav-sigin span.icon{background-position:-225px 0}
+#global-nav a#nav-search span.icon{background-position:-159px 0}
+#global-nav a#nav-cart span.icon{background-position:-189px 0;width:35px;width:3.5rem}
+#global-nav a#nav-share span.icon{background-position:-256px 0;text-align:right}
+@media (min-width:640px){#logo-wrap{text-align:center} #global-nav a{text-align:left}#global-nav a span.txt{display:block} #global-nav a span.icon{margin:-5px 7px 0 10px;margin:-0.5rem .7rem 0 1rem;float:left} #global-nav a#nav-cats,#global-nav a#nav-search{width:28%} #global-nav a#nav-cart{width:15%;padding-left:2%;background-color:#08bbc2} #global-nav a#nav-sigin{width:18%;background-color:#08bbc2} #global-nav a#nav-share{width:8%;float:right}#global-nav a#nav-share span.txt{display:none}}@media (min-width:960px){#global-nav a{text-align:left}#global-nav a#nav-cart{width:12%} #global-nav a#nav-sigin{width:13%} #global-nav a#nav-share{width:12%;float:right}#global-nav a#nav-share span.txt{display:block}}
