@@ -4,17 +4,23 @@
  * Time: 1:25 AM
  */
 
-//checkoutController.checkout
-
 var db = require('../lib/storage').db;
 var Product = require('../models/Product').Product
-  , Cart = require('../models/Cart').Cart;
+  , Cart = require('../models/Cart').Cart
+  , conf = require('../conf/conf').conf
+  , paypal_sdk = require('paypal-rest-sdk')
+  , paypal_lib = require('../lib/paypal');
 
+
+// configure the PayPal sdk
+paypal_sdk.configure(conf.payPal.api);
+
+
+/**
+ * Renders the checkout page,
+ * to collect user data for PayPal payments.
+ */
 exports.getCheckout = function(req, res){
-  var quantity = +(req.param('quantity') || 0)
-    , productId = req.param('productId');
-
-
   var user = req.isAuthenticated() ? req.user : false;
 
   function getTotal(cart) {
@@ -52,4 +58,34 @@ exports.getCheckout = function(req, res){
     renderResponse([]);
   }
 
+};
+
+
+/**
+ * Makes a PayPal payment via credit cards.
+ */
+exports.makePayment = function(req, res) {
+
+  var payParams = {
+    amount: +(req.param('amount') || 0),
+    first_name: req.param('first_name'),
+    last_name: req.param('last_name'),
+    number: req.param('number'),
+    type: req.param('type'),
+    expire_month: req.param('expire_month'),
+    expire_year: req.param('expire_year'),
+    cvv2: req.param('cvv2')
+  };
+
+  var payment = paypal_lib.getPayment(payParams);
+
+  paypal_sdk.payment.create(payment, function (error, payment) {
+    if (error) {
+      console.log('\n\n--- PayPal error: ', error);
+      renderResponse(cart, products);
+    } else {
+      req.session.paymentId = payment.id;
+      res.render('create', { 'payment': payment });
+    }
+  });
 };
