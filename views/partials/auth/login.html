@@ -1,51 +1,59 @@
 <div id="login-register" style="display:none;">
-	<div id="login" class="marg-t-1unit">
-		<h1>Login</h1>
-		
-		<form action="/login" method="post">
-		
-			<div>
-				<label>email:</label>
-				<input type="text" name="email" value="">
-			</div>
+
+	<div class="row">
+
+		<div id="login" class="grid-4of4 grid-4of8 grid-6of12">
+			<h1>Login</h1>
 			
-			<div>
-				<label>password:</label>
-				<input type="password" name="password" value="">
-			</div>
-		
-			<input type="submit" value="submit">
-		
-		</form>
-	</div>
-
-	<div id="register" class="marg-t-1unit">
-		<h1>Register</h1>
-		
-		<form action="/register" method="post">
-		
-			<div>
-				<label>First Name:</label>
-				<input type="text" name="firstName" value="">
-			</div>
+			<form action="/login" method="post">
 			
-			<div>
-				<label>Last Name:</label>
-				<input type="text" name="lastName" value="">
-			</div>
+				<div>
+					<label>email:</label>
+					<input type="email" name="email" value="" required>
+				</div>
+				
+				<div>
+					<label>password:</label>
+					<input type="password" name="password" value="" required minlength="5">
+				</div>
+				
+				<div class="form-row">
+					<input class="myButton" type="submit" value="submit">
+				</div>
+			</form>
+		</div>
+	
+		<div id="register" class="grid-4of4 grid-4of8 grid-6of12">
+			<h1>Register</h1>
+			
+			<form action="/register" method="post">
+			
+				<div>
+					<label>First Name:</label>
+					<input type="text" name="firstName" value="" minlength="2" required>
+				</div>
+				
+				<div>
+					<label>Last Name:</label>
+					<input type="text" name="lastName" value="" minlength="2" required>
+				</div>
+	
+				<div>
+					<label>Email:</label>
+					<input type="email" name="email" value="" required>
+				</div>
+	
+				<div>
+					<label>password:</label>
+					<input type="password" name="password" value="" minlength="5" required>
+				</div>
+				
+				<div class="form-row">
+					<input class="myButton" type="submit" value="submit">
+				</div>
+			</form>
+		</div>
 
-			<div>
-				<label>Email:</label>
-				<input type="text" name="email" value="">
-			</div>
+	</div><!--/row-->
 
-			<div>
-				<label>password:</label>
-				<input type="password" name="password" value="">
-			</div>
-		
-			<input type="submit" value="submit">
-		
-		</form>
-	</div>
 </div>

@@ -1,14 +1,45 @@
 define([
     'jquery', 
     'underscore', 
-    'backbone'
+    'backbone',
+    'jquery.validate'
 ], 
 function(
     $, 
     _, 
     Backbone
 ){
-    
+    var validator;
+
+    //domready
+    $(function() {
+
+        $("#login form").validate({
+            showErrors : function(errorMap, errorList) {
+
+                $('form input').removeClass('error');
+
+                for(var i = 0; i < errorList.length; i++) {
+                    var result = errorList[i];
+                    $(result.element).addClass('error');
+                }
+            }
+        });
+
+        $("#register form").validate({
+            showErrors : function(errorMap, errorList) {
+
+                $('form input').removeClass('error');
+
+                for(var i = 0; i < errorList.length; i++) {
+                    var result = errorList[i];
+                    $(result.element).addClass('error');
+                }
+            }
+        });
+
+    });
+
     var LoginView = Backbone.View.extend({
     	
     	el: '#login-register',
@@ -44,8 +75,6 @@ function(
 
             e.preventDefault();
 
-
-
             this.model.save({
                 firstName: this.$('#register input[name="firstName"]').val(), 
                 lastName: this.$('#register input[name="lastName"]').val(), 
@@ -54,28 +83,11 @@ function(
             }, 
             {
                 wait: true,
-                success: function() {
+                success: function(model, xhr) {
+                    if(xhr.error) { alert(xhr.error); return; }
                     $.fancybox.close();
                 }
             });
-
-            /*
-            var self = this;
-
-            $.ajax({
-                url : '/register',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    firstName: this.$('#register input[name="firstName"]').val(), 
-                    lastName: this.$('#register input[name="lastName"]').val(), 
-                    email: this.$('#register input[name="email"]').val(), 
-                    password: this.$('#register input[name="password"]').val()
-                },
-                success : $.proxy(self.onSubmitSuccess, self),
-                error : $.proxy(self.onSubmitError, self)
-            });
-            */
 
         },
 

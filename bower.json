@@ -21,6 +21,7 @@
     "underscore": "~1.5.2",
     "jquery": "~2.0.3",
     "jquery.cookie": "~1.4.0",
-    "fancybox": "~2.1.5"
+    "fancybox": "~2.1.5",
+    "jquery.validation" : "*"
   }
 }
