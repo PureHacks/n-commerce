@@ -82,10 +82,13 @@ exports.makePayment = function(req, res) {
   paypal_sdk.payment.create(payment, function (error, payment) {
     if (error) {
       console.log('\n\n--- PayPal error: ', error);
-      renderResponse(cart, products);
+      res.redirect('/cart');
     } else {
       req.session.paymentId = payment.id;
-      res.render('create', { 'payment': payment });
+      res.render('paypalSuccess', {
+        "payment": payment,
+        "amount": payParams.amount
+      });
     }
   });
 };
