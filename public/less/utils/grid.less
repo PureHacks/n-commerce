@@ -34,9 +34,20 @@
 
 	.mobile-only, .desktop-only, .tablet-hide {display: none;}
 
-	.marg-l-0-t, .row .marg-l-0-t, body .row .row .marg-l-0-t { margin-left:0; }
-	.marg-r-0-t, .row .marg-r-0-t, body .row .row .marg-r-0-t { margin-right:0; }
-	.marg-lr-0-t, .row .marg-lr-0-t, body .row .row .marg-lr-0-t { margin-left:0; margin-right:0; }
+	.marg-r-0-t, 
+	.row [class*="grid-"] .marg-r-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-r-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-r-0-t { margin-right:0; }
+
+	.marg-l-0-t, 
+	.row [class*="grid-"] .marg-l-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-l-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-l-0-t { margin-left:0; }
+
+	.marg-lr-0-t, 
+	.row [class*="grid-"] .marg-lr-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-lr-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-lr-0-t { margin-left:0; margin-right:0;}
 }
 
 
@@ -60,9 +71,21 @@
 
 	.mobile-only, .tablet-only, .desktop-hide {display: none;}
 
-	.marg-l-0-d, .row .marg-l-0-d, body .row .row .marg-l-0-d { margin-left:0; }
-	.marg-r-0-d, .row .marg-r-0-d, body .row .row .marg-r-0-d { margin-right:0; }
-	.marg-lr-0-d, .row .marg-lr-0-d, body .row .row .marg-lr-0-d { margin-left:0; margin-right:0; }
+	.marg-r-0-t, 
+	.row [class*="grid-"] .marg-r-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-r-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-r-0-t { margin-right:0; }
+
+	.marg-l-0-t, 
+	.row [class*="grid-"] .marg-l-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-l-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-l-0-t { margin-left:0; }
+
+	.marg-lr-0-t, 
+	.row [class*="grid-"] .marg-lr-0-t, 
+	.row [class*="grid-"] [class*="grid-"] .marg-lr-0-t, 
+	.row [class*="grid-"] .row [class*="grid-"] .marg-lr-0-t { margin-left:0; margin-right:0;}
+
 }
 
 

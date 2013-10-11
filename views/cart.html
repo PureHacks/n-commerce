@@ -1,23 +1,38 @@
 
-<!-- cart page -->
-Cart page (template)
-<h1>Cart</h1>
-<h2>Total: {{total}}</h2>
-<h2>you have {{productsLength}} items</h2>
 
-<ul id="cart-list">
-    {{#each productList}}
-    <li>
-        <a href="/product/{{product.id}}">{{product.name}}&nbsp;{{product.price}}</a><br/>
-        <p>SKU: {{product.sku}}</p>
-        <p>Description: {{product.desc}}</p>
-        <p>Quantity: {{quantity}} pc(s)</p>
-    </li>
-    {{/each}}
-</ul>
+<div class="row">
+    <div class="grid-4of4 grid-8of8 grid-12of12">
+
+        <section id="cart">
+
+            <div class="grid-4of4 grid-4of8 grid-8of12 marg-l-0">
+                <h1>Your Shopping Cart - {{productsLength}} item(s)</h1>
+                <ul id="cart-list">
+                    {{#each productList}}
+                    <li>
+                        <a href="/product/{{product.id}}">{{product.name}}&nbsp;{{product.price}}</a><br/>
+                        <p>SKU: {{product.sku}}</p>
+                        <p>Description: {{product.desc}}</p>
+                        <p>Quantity: {{quantity}} pc(s)</p>
+                    </li>
+                    {{/each}}
+                </ul>
+                             
+            </div>
+
+            <div class="grid-4of4 grid-4of8 grid-4of12 marg-r-0-t marg-r-0-d">
+                <h2>Cart Totals</h2>
+                <p>Total: ${{total}}</p>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
 
 {{#contentFor 'pageStyles'}}
-<link type="text/css" rel="stylesheet" href="/css/pip.css"/>
+<!--<link type="text/css" rel="stylesheet" href="/css/cart.css"/>-->
 {{/contentFor}}
 
 
