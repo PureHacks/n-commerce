@@ -97,6 +97,7 @@ app.get('/cart', cartController.getCart);
 app.post('/cart', cartController.addToCart);
 
 app.get('/checkout', checkoutController.getCheckout);
+app.post('/checkout', checkoutController.makePayment);
 
 app.get('/topcategories', navController.getCategories);
 app.get('/subcategories/:id', navController.getCategories);

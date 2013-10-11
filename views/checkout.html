@@ -6,6 +6,7 @@
         <p id="checkout-shipping">Shipping: {{shipping}}</p>
         <p id="checkout-total">Total: {{total}}</p>
     </section>
+
     <form id="checkout-form" method="post" action="/checkout">
         <div><label for="first-name">First Name: </label><input type="text" name="first_name" id="first-name" value="Joe"> </div>
         <div><label for="last-name">Last name: </label><input type="text" name="last_name" id="last-name" value="Shopper"> </div>
@@ -14,6 +15,7 @@
         <div><label for="expire_month">Expire Month: </label><input type="number" name="expire_month" id="expire_month" value="12"> </div>
         <div><label for="expire_year">Expire Year: </label><input type="number" name="expire_year" id="expire_year" value="2018"> </div>
         <div><label for="cvv2">CVV: </label><input type="number" name="cvv2" id="cvv2" value="111"> </div>
+        <input type="hidden" name="amount" value="{{total}}">
         <input type="submit" value="Make Payment">
     </form>
 </div>
