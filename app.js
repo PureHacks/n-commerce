@@ -9,6 +9,7 @@ var express = require('express')
 	, controllers = require('./controllers')
 	, productController = require('./controllers/products')
 	, cartController = require('./controllers/cart')
+  , checkoutController = require('./controllers/checkout')
 	, navController = require('./controllers/navigation')
 	, http = require('http')
 	, fs = require('fs')
@@ -94,6 +95,8 @@ app.get('/product/:id', productController.getProducts);
 
 app.get('/cart', cartController.getCart);
 app.post('/cart', cartController.addToCart);
+
+app.get('/checkout', checkoutController.getCheckout);
 
 app.get('/topcategories', navController.getCategories);
 app.get('/subcategories/:id', navController.getCategories);

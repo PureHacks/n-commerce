@@ -21,6 +21,7 @@
     "passport-local" : "*",
     "crypto" : "*",
 	  "mongoose-text-search":"*",
-    "bower" : "0.10.0"
+    "bower" : "0.10.0",
+    "paypal-rest-sdk": "*"
   }
 }

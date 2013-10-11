@@ -1,0 +1,37 @@
+
+<div id="checkout-page" class="grid-4of4 grid-8of8 grid-12of12">
+    <section id="cart-checkout-data">
+        <p id="checkout-amount">Amount: {{amount}}</p>
+        <p id="checkout-taxes">Taxes: {{taxes}}</p>
+        <p id="checkout-shipping">Shipping: {{shipping}}</p>
+        <p id="checkout-total">Total: {{total}}</p>
+    </section>
+    <form id="checkout-form" method="post" action="/checkout">
+        <div><label for="first-name">First Name: </label><input type="text" name="first_name" id="first-name" value="Joe"> </div>
+        <div><label for="last-name">Last name: </label><input type="text" name="last_name" id="last-name" value="Shopper"> </div>
+        <div><label for="card-number">Card Number: </label><input type="number" name="number" id="card-number" value="5500005555555559"> </div>
+        <div><label for="card-type">Card Type: </label><input type="text" name="type" id="card-type" value="mastercard"> </div>
+        <div><label for="expire_month">Expire Month: </label><input type="number" name="expire_month" id="expire_month" value="12"> </div>
+        <div><label for="expire_year">Expire Year: </label><input type="number" name="expire_year" id="expire_year" value="2018"> </div>
+        <div><label for="cvv2">CVV: </label><input type="number" name="cvv2" id="cvv2" value="111"> </div>
+        <input type="submit" value="Make Payment">
+    </form>
+</div>
+
+{{#contentFor 'pageStyles'}}
+    <link type="text/css" rel="stylesheet" href="/css/partials/checkout.css"/>
+{{/contentFor}}
+
+
+<script>
+    //Load common code that includes config, then load the app
+    //logic for this page. Do the require calls here instead of
+    //a separate file so after a build there are only 2 HTTP
+    //requests instead of three.
+    require(['js/common'], function (common) {
+        //js/common sets the baseUrl to be js/ so
+        //can just ask for 'app/main1' here instead
+        //of 'js/app/main1'
+        require(['views/pageview']);
+    });
+</script>

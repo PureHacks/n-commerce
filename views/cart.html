@@ -23,6 +23,11 @@
             <div class="grid-4of4 grid-4of8 grid-4of12 marg-r-0-t marg-r-0-d">
                 <h2>Cart Totals</h2>
                 <p>Total: ${{total}}</p>
+
+                <form id="checkout-form" method="get" action="/checkout">
+                    <!-- input type="hidden" name="amount" value="{{total}}" -->
+                    <input type="submit" value="Checkout">
+                </form>
             </div>
 
         </section>
@@ -32,7 +37,7 @@
 
 
 {{#contentFor 'pageStyles'}}
-<!--<link type="text/css" rel="stylesheet" href="/css/cart.css"/>-->
+    <<link type="text/css" rel="stylesheet" href="/css/partials/cart.css"/>
 {{/contentFor}}
 
 
