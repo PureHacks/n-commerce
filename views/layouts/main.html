@@ -7,6 +7,18 @@
 <script src="/bower_components/requirejs/require.js"></script>
 <script src="js/polyfils/modernizr.js"></script>
  <!-- A block is placeholder for pieces of content defined in a page. Top of the page since we're using require -->
+ <script>
+    //Load common code that includes config, then load the app
+    //logic for this page. Do the require calls here instead of
+    //a separate file so after a build there are only 2 HTTP
+    //requests instead of three.
+    require(['/js/common.js'], function (common) {
+    	//js/common sets the baseUrl to be js/ so
+        //can just ask for 'app/main1' here instead
+        //of 'js/app/main1'
+    	{{{block 'requirepage'}}}
+  	});
+</script>
 {{{block 'pageScripts'}}}
 </head>
 

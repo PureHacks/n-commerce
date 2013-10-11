@@ -1,4 +1,3 @@
-
 <div id="paypal-success" class="grid-4of4 grid-8of8 grid-12of12">
     <p>Your payment of ${{amount}} was successful!!!<br>
     Payment Id: {{payment.id}}<br>
@@ -7,3 +6,11 @@
     <br>
     Thanks for shopping!</p>
 </div>
+
+{{#contentFor 'requirepage'}}
+
+    //page specifc JS
+    var page = require(['views/paypalsuccesspage']);
+
+{{/contentFor}}
+

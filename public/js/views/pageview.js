@@ -17,8 +17,6 @@ function(
     ProfileView
 ){
     
-    $(function() {
-
     	var PageView = Backbone.View.extend({
     		
     		el: 'body',
@@ -26,6 +24,8 @@ function(
     	 	initialize: function() {
 	
     	 		// $.cookie.json = true;
+
+                 console.log('PageView init');
 	
     	 		var userModel = new UserModel();
     	 		
@@ -50,12 +50,10 @@ function(
                     });
                 }
     	 	}
-	
-    	});
-	
-    	return new PageView();
 
     });
+
+    return PageView;    
 
     
 });
