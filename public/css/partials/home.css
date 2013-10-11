@@ -1,0 +1,4 @@
+@font-face{font-family:'lucidaSans';src:url('/fonts/lsans-webfont.eot');src:url('/fonts/lsans-webfont.eot?#iefix') format('embedded-opentype'),url('/fonts/lsans-webfont.woff') format('woff'),url('/fonts/lsans-webfont.ttf') format('truetype'),url('/fonts/lsans-webfont.svg#lucidaSans') format('svg');font-weight:normal;font-style:normal}#product-list article{margin-left:0;margin-bottom:18px;margin-bottom:1.8rem}#product-list article img{border:1px solid #e1e1e1}
+#product-list article h1{font-size:16px;font-size:1.6rem;line-height:18px;line-height:1.8rem;margin-top:10px;margin-top:1rem;margin-bottom:5px;margin-bottom:.5rem;font-weight:normal;float:left}
+#product-list article span{float:left;clear:both}#product-list article span.sku{font-size:10px;font-size:1rem;line-height:18px;line-height:1.7999999999999998rem;color:#ccc}
+#product-list article span.price{font-size:14px;font-size:1.4rem;line-height:18px;line-height:1.7999999999999998rem}

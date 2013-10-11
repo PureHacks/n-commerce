@@ -1,0 +1,13 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+
+#product-list article { margin-left:0; margin-bottom:18px; margin-bottom:1.8rem; 
+
+	img { border: 1px solid #e1e1e1; }
+	h1 { .fontSizeMarginMixin(1.6, 1.8, 1, 0.5); font-weight:normal; float:left; }
+
+	span { float:left; clear:both; 
+		&.sku { .fontSizeMixin(1.0); color:@lt1Grey; }
+		&.price { .fontSizeMixin(1.4); }
+	}
+}

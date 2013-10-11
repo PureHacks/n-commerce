@@ -1,25 +1,43 @@
 
-<!-- PIP page -->
-PIP page (template)
-<h1>Product Info</h1>
 
-<p id="prod-title">{{productName}}</p>
-<p>{{productPrice}}</p>
-<p>{{productSku}}</p>
-<p>{{productImage}}</p>
-<p>Date Added: {{productDateAdded}}</p>
-<p>Qty Available:{{productQuantity}}</p>
-<p>Status:{{productStatus}}</p>
-<p>{{productDesc}}</p>
-<form action="/cart" method="post">
-    <label for="quantity">quantity</label> <input type="text" name="quantity" id="quantity" value="1">
-    <input type="hidden" name="productId" id="productId" value="{{productId}}">
-    <input type="submit" data-id="{{productId}}" value="Add to cart">
-</form>
+<div class="row">
+    <div class="grid-4of4 grid-8of8 grid-12of12">
+
+        <section id="product-{{productId}}" class="product-details">
+
+            <div class="grid-4of4 grid-4of8 grid-8of12 marg-l-0">
+                <h1>{{productName}}</h1>
+
+                <p class="desc">{{productDesc}}</p>
+                <span class="price">${{productPrice}}</span>
+                
+                <form action="/cart" method="post">
+                    <label for="quantity">Qty:</label> <input type="text" name="quantity" id="quantity" maxlength="3" size="3" value="1">
+                        <input type="hidden" name="productId" id="productId" value="{{productId}}" />
+                    </label>
+                    <input type="submit" data-id="{{productId}}" value="Add to cart" />
+                </form>
+
+                <div id="other-details">
+                    <span class="sku">SKU: {{productSku}}</span>   
+                    <span>Qty Available:{{productQuantity}}</span>
+                    <span>Status:{{productStatus}}</span>
+                    <span>Date Added: {{productDateAdded}}</span>
+                </div>                
+            </div>
+
+            <div class="grid-4of4 grid-4of8 grid-4of12 marg-r-0-t marg-r-0-d">
+                <img src="/images/products/{{productImage}}" alt="{{productImage}}" title="{{productImage}}" />
+            </div>
+
+        </section>
+
+    </div>
+</div>
 
 
 {{#contentFor 'pageStyles'}}
-	<link type="text/css" rel="stylesheet" href="/css/pip.css"/>
+	<link type="text/css" rel="stylesheet" href="/css/partials/pip.css"/>
 {{/contentFor}}
 
 
@@ -35,4 +53,3 @@ PIP page (template)
         require(['views/pageview']);
     });
 </script>
-

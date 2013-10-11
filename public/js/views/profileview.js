@@ -11,7 +11,8 @@ function(
     
     var ProfileView = Backbone.View.extend({
     	
-    	el: '#profile',
+    	//el: '#profile',
+        el: '#nav-sigin',
 
         events : {
             "click #toggle-signin"     : 'onToggleSubmitClick'
@@ -60,12 +61,12 @@ function(
 
             if(loggedIn) {
 
-                this.$('.greeting span').text(user.get('lastName'));
+                this.$('#nav-sigin span.txt').text(user.get('lastName'));
                 this.$('#toggle-signin').text(this.$('#toggle-signin').data('signout'));
                 
             } else {
 
-                this.$('.greeting span').text('Guest');
+                this.$('#nav-sigin span.txt').text('Guest');
                 this.$('#toggle-signin').text(this.$('#toggle-signin').data('signin'));
             }
         }

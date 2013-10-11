@@ -1,34 +1,27 @@
 
-{{> site-nav}}
+
 <div class="row">
-    <div class="grid-12of12 grid-8of8 grid-4of4">
-
-        <div class="grid-8of12 grid-4of8 grid-4of4 marg-l-0">
-            
-        
-            {{> profile}}
-
-            {{> auth/login}}
-        </div>
-
-        <div class="grid-4of12 grid-4of8 grid-4of4 marg-r-0 marg-t-1unit">
-            <h1>Product List</h1>
-            <ul id="product-list">
-            {{#each productList}}
-               <li>
-                  <a href="/product/{{id}}">{{name}}&nbsp;{{price}}</a><br/>
-                  {{desc}}
-               </li>
-            {{/each}}
-            </ul>
-        </div>
+    <div class="grid-4of4 grid-8of8 grid-12of12">
+			
+		<div id="product-list">
+			{{#each productList}}
+				<article id="product-{{id}}" class="grid-2of4 grid-2of8 grid-3of12">
+					<a href="/product/{{id}}" title="{{name}} click for details ">
+					<!--<img src="/images/products/{{productImage}}.jpg" alt="{{productImage}}" title="{{productImage}}" />-->
+					<img src="/images/products/chia.jpg" alt="{{name}}" />
+					<h1>{{name}}</h1></a>
+					<span class="price">${{price}}</span>
+					<span class="sku">SKU: {{productSku}}</span>	
+				</article>
+			{{/each}}
+		</div>
+       
 
     </div>
 </div>
 
 {{#contentFor 'pageStyles'}}
-    <!--<link type="text/css" rel="stylesheet" href="/css/home.css"/>-->
-
+    <link type="text/css" rel="stylesheet" href="/css/partials/home.css"/>
 {{/contentFor}}
 
 

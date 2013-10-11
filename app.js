@@ -3,17 +3,17 @@
  * Module dependencies.
  */
 var express = require('express')
-  , app = express()
-  , passport = require("passport")
-  , authController = require('./controllers/auth')(passport)
-  , controllers = require('./controllers')
-  , productController = require('./controllers/products')
-  , cartController = require('./controllers/cart')
-  , navController = require('./controllers/navigation')
-  , http = require('http')
-  , fs = require('fs')
-  , path = require('path')
-  , hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
+	, app = express()
+	, passport = require("passport")
+	, authController = require('./controllers/auth')(passport)
+	, controllers = require('./controllers')
+	, productController = require('./controllers/products')
+	, cartController = require('./controllers/cart')
+	, navController = require('./controllers/navigation')
+	, http = require('http')
+	, fs = require('fs')
+	, path = require('path')
+	, hbs = require('express-hbs'); //https://npmjs.org/package/express-hbs
 
 
 require('./lib/passport')(passport);	
@@ -43,12 +43,12 @@ app.use(app.router);
 console.log('What ENV are we in? '+app.get('env'));
 
 app.use(require('less-middleware')({ 
-  src: __dirname + "/public/less"
-  , dest: __dirname + "/public/css"
-  , compress:true
-  , debug: (app.get('env')=='development')?true:false
-  , force: (app.get('env')=='development')?true:false
-  , prefix:'/css'
+	src: __dirname + "/public/less"
+	, dest: __dirname + "/public/css"
+	, compress:true
+	, debug: (app.get('env')=='development')?true:false
+	, force: (app.get('env')=='development')?true:false
+	, prefix:'/css'
 }));
 
 //app.use(express.static(path.join(__dirname, 'public')));
@@ -70,7 +70,7 @@ app.set('views', __dirname + '/views');
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 
@@ -105,17 +105,17 @@ app.get('/searchProducts/:searchTerm', productController.searchProducts);
 
 //page not found
 app.use(function(req, res, next){
-  res.send(404, '404 - Sorry cant find that!');
+	res.send(404, '404 - Sorry cant find that!');
 });
 
 // 500 error page
 app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.send(500, '500 Something broke!');
+	console.error(err.stack);
+	res.send(500, '500 Something broke!');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  // in command line: node app
-  console.log('Express server listening on port ' + app.get('port'));
+	// in command line: node app
+	console.log('Express server listening on port ' + app.get('port'));
 });
 

@@ -82,13 +82,14 @@ exports.getCart = function(req, res) {
     return total.toFixed(2);
   };
 
-  function renderResponse(cart, products) {
-    res.render('cart', {
-      productList: products,
-      productsLength: cart.products.length,
-      total: getTotal(cart)
-    });
-  };
+	function renderResponse(cart, products) {
+		res.render('cart', {
+			title:'Your Shopping Cart'
+			, productList: products
+			, productsLength: cart.products.length
+			, total: getTotal(cart)
+		});
+	};
 
   if(user) {
     Cart.findOne({_id:user.cart})

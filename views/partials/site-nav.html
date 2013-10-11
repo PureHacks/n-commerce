@@ -7,16 +7,18 @@
 <div class="row">
 
 	<nav id="global-nav" class="grid-4of4 grid-8of8 grid-12of12">
-    	<a href="#" id="nav-cats" title="Browse Product Categories"><span class="icon"></span><span class="txt">CATEGORIES</span></a>
+    	<a href="#" id="nav-cats" title="Browse product categories"><span class="icon"></span><span class="txt">CATEGORIES</span></a>
 		
-		<a href="#" id="nav-search" title="Browse Product Categories"><span class="icon"></span><span class="txt">SEARCH</span></a>
+		<a href="#" id="nav-search" title="Seach for products"><span class="icon"></span><span class="txt">SEARCH</span></a>
 
-		<a href="#" id="nav-cart" title="Browse Product Categories"><span class="icon"></span><span class="txt">CART</span></a>
+		<a href="/cart" id="nav-cart" title="View Shopping Cart"><span class="icon"></span><span class="txt">CART</span></a>
 
-		<a href="#" id="nav-sigin" title="Browse Product Categories"><span class="icon"></span><span class="txt">SIGN IN</span></a>
+		<a href="#" id="nav-sigin" title="Sign In"><span class="icon"></span><span class="txt" id="toggle-signin" data-signin="Sign In" data-signout="Sign Out">SIGN IN</span></a>
 
-		<a href="#" id="nav-share" title="Browse Product Categories"><span class="icon"></span><span class="txt">SHARE</span></a>
+		<a href="#" id="nav-share" title="Share this page"><span class="icon"></span><span class="txt">SHARE</span></a>
 
 	</nav>
 
 </div>
+
+{{> auth/login}}
