@@ -81,7 +81,9 @@ exports.makePayment = function(req, res) {
 
   paypal_sdk.payment.create(payment, function (error, payment) {
     if (error) {
-      console.log('\n\n--- PayPal error: ', error);
+      // for now, just redirect to
+      //  cart, later TODO add proper logs and
+      //  error handling
       res.redirect('/cart');
     } else {
       req.session.paymentId = payment.id;
