@@ -52,7 +52,8 @@ app.use(require('less-middleware')({
 }));
 
 //app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(__dirname+'/public'));
 
 
 // Hook in express-hbs and tell it where known directories reside
